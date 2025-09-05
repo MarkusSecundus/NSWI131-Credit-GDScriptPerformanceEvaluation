@@ -41,6 +41,7 @@
 #include "core/os/keyboard.h"
 #include "core/os/thread_safe.h"
 #include "core/variant/typed_array.h"
+#include "modules/gdscript/gdscript.h"
 
 namespace core_bind {
 
@@ -628,6 +629,40 @@ String OS::get_unique_id() const {
 	return ::OS::get_singleton()->get_unique_id();
 }
 
+bool _vm_marker = false;
+
+void OS::vm_marker(void) {
+	_vm_marker = true;
+}
+
+bool OS::start_tracking_memory(void) {
+	return Memory::start_tracking_memory();
+}
+
+bool OS::stop_tracking_memory(void) {
+	return Memory::stop_tracking_memory();
+}
+
+uint64_t OS::get_tracked_alloc_count(void) {
+	return Memory::get_tracked_alloc_count();
+}
+
+uint64_t OS::get_tracked_realloc_count(void) {
+	return Memory::get_tracked_realloc_count();
+}
+
+uint64_t OS::get_tracked_free_count(void) {
+	return Memory::get_tracked_free_count();
+}
+
+uint64_t OS::get_tracked_allocated_bytes(void) {
+	return Memory::get_tracked_allocated_bytes();
+}
+
+uint64_t OS::get_tracked_reallocated_bytes(void) {
+	return Memory::get_tracked_reallocated_bytes();
+}
+
 OS *OS::singleton = nullptr;
 
 void OS::_bind_methods() {
@@ -733,6 +768,17 @@ void OS::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("request_permissions"), &OS::request_permissions);
 	ClassDB::bind_method(D_METHOD("get_granted_permissions"), &OS::get_granted_permissions);
 	ClassDB::bind_method(D_METHOD("revoke_granted_permissions"), &OS::revoke_granted_permissions);
+
+	ClassDB::bind_method(D_METHOD("start_tracking_memory"), &OS::start_tracking_memory);
+	ClassDB::bind_method(D_METHOD("stop_tracking_memory"), &OS::stop_tracking_memory);
+	ClassDB::bind_method(D_METHOD("get_tracked_alloc_count"), &OS::get_tracked_alloc_count);
+	ClassDB::bind_method(D_METHOD("get_tracked_realloc_count"), &OS::get_tracked_realloc_count);
+	ClassDB::bind_method(D_METHOD("get_tracked_free_count"), &OS::get_tracked_free_count);
+	ClassDB::bind_method(D_METHOD("get_tracked_allocated_bytes"), &OS::get_tracked_allocated_bytes);
+	ClassDB::bind_method(D_METHOD("get_tracked_reallocated_bytes"), &OS::get_tracked_reallocated_bytes);
+	ClassDB::bind_method(D_METHOD("vm_marker"), &OS::vm_marker);
+	ClassDB::bind_static_method("OS", D_METHOD("disassemble_function"), &disassemble_function);
+
 
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "low_processor_usage_mode"), "set_low_processor_usage_mode", "is_in_low_processor_usage_mode");
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "low_processor_usage_mode_sleep_usec"), "set_low_processor_usage_mode_sleep_usec", "get_low_processor_usage_mode_sleep_usec");

@@ -221,6 +221,17 @@ public:
 
 	String get_unique_id() const;
 
+	void vm_marker(void);
+	bool start_tracking_memory(void);
+	bool stop_tracking_memory(void);
+
+	uint64_t get_tracked_alloc_count(void);
+	uint64_t get_tracked_realloc_count(void);
+	uint64_t get_tracked_free_count(void);
+	uint64_t get_tracked_allocated_bytes(void);
+	uint64_t get_tracked_reallocated_bytes(void);
+
+
 	String get_keycode_string(Key p_code) const;
 	bool is_keycode_unicode(char32_t p_unicode) const;
 	Key find_keycode_from_string(const String &p_code) const;
