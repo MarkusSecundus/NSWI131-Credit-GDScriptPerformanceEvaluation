@@ -4,8 +4,6 @@ class_name DatastructBenchmarksLoad
 class ArrayIndexLoad:
 	extends IBenchmark
 	
-	func get_name()->String: return "ArrayIndexLoad"
-	
 	var arr: Array = []
 	
 	func _init() -> void:
@@ -27,8 +25,6 @@ class ArrayIndexLoad:
 class ArrayTypedIndexLoad:
 	extends IBenchmark
 	
-	func get_name()->String: return "ArrayTypedIndexLoad"
-
 	var arr: Array[int] = []
 	
 	func _init() -> void:
@@ -50,7 +46,6 @@ class ArrayTypedIndexLoad:
 class ArrayPacked64IndexLoad:
 	extends IBenchmark
 	
-	func get_name()->String: return "ArrayPacked64IndexLoad"
 	var arr: PackedInt64Array = []
 	
 	func _init() -> void:
@@ -72,7 +67,6 @@ class ArrayPacked64IndexLoad:
 class ArrayPacked32IndexLoad:
 	extends IBenchmark
 	
-	func get_name()->String: return "ArrayPacked32IndexLoad"
 	var arr: PackedInt32Array = []
 	
 	func _init() -> void:
@@ -94,7 +88,6 @@ class ArrayPacked32IndexLoad:
 class DictionaryIndexLoad:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionaryIndexLoad"
 	var arr: Dictionary = {}
 	
 	func _init() -> void:
@@ -117,7 +110,6 @@ class DictionaryIndexLoad:
 class DictionaryDynIndexLoad:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionaryDynIndexLoad"
 	var arr: Dictionary = {}
 	
 	func _init() -> void:
@@ -139,7 +131,6 @@ class DictionaryDynIndexLoad:
 class DictionaryTypedIndexLoad:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionaryTypedIndexLoad"
 	var arr: Dictionary[int, int] = {}
 	
 	func _init() -> void:
@@ -158,6 +149,7 @@ class DictionaryTypedIndexLoad:
 			
 		return Time.get_ticks_usec() - start_time
 
+class _Blank1: pass
 
 static var _TEST_NAMES : PackedStringArray = [
 	"_00",
@@ -216,8 +208,6 @@ static var _TEST_NAMES : PackedStringArray = [
 class DictionaryNamedLoad:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionaryNamedLoad"
-
 	var dict :Dictionary = {}
 	func _init() -> void:
 		dict.clear()
@@ -287,8 +277,6 @@ class DictionaryNamedLoad:
 class DictionaryTypedNamedLoad:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionaryTypedNamedLoad"
-	
 	var dict :Dictionary[String, int] = {}
 	func _init() -> void:
 		dict.clear()
@@ -357,8 +345,6 @@ class DictionaryTypedNamedLoad:
 class DictionaryGetNamedLoad:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionaryGetNamedLoad"
-	
 	var dict :Dictionary[String, int] = {}
 	func _init() -> void:
 		dict.clear()
@@ -426,8 +412,6 @@ class DictionaryGetNamedLoad:
 
 class DictionaryGetDynNamedLoad:
 	extends IBenchmark
-	
-	func get_name()->String: return "DictionaryGetDynNamedLoad"
 	
 	var dict :Dictionary[String, int] = {}
 	func _init() -> void:
@@ -551,8 +535,6 @@ class _TestDatastruct:
 class ObjectTypedNamedLoad:
 	extends IBenchmark
 	
-	func get_name()->String: return "ObjectTypedNamedLoad"
-	
 	var dict := _TestDatastruct.new()
 	
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
@@ -616,8 +598,6 @@ class ObjectTypedNamedLoad:
 
 class ObjectDynNamedLoad:
 	extends IBenchmark
-	
-	func get_name()->String: return "ObjectDynNamedLoad"
 	
 	var dict := _TestDatastruct.new()
 	
@@ -683,8 +663,6 @@ class ObjectDynNamedLoad:
 class ObjectGetNamedLoad:
 	extends IBenchmark
 	
-	func get_name()->String: return "ObjectGetNamedLoad"
-	
 	var dict := _TestDatastruct.new()
 	
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
@@ -748,8 +726,6 @@ class ObjectGetNamedLoad:
 
 class ObjectGetDynNamedLoad:
 	extends IBenchmark
-	
-	func get_name()->String: return "ObjectGetDynNamedLoad"
 	
 	var dict := _TestDatastruct.new()
 	

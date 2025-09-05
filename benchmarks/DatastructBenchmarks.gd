@@ -4,8 +4,6 @@ class_name DatastructBenchmarks
 class ArrayIndexStore:
 	extends IBenchmark
 	
-	func get_name()->String: return "ArrayIndexStore"
-	
 	var arr : Array = []
 	func _init():
 		arr.resize(500)
@@ -22,8 +20,6 @@ class ArrayIndexStore:
 
 class ArrayTypedIndexStore:
 	extends IBenchmark
-	
-	func get_name()->String: return "ArrayTypedIndexStore"
 	
 	var arr : Array[int] = []
 	func _init():
@@ -42,8 +38,6 @@ class ArrayTypedIndexStore:
 class ArrayPacked64IndexStore:
 	extends IBenchmark
 	
-	func get_name()->String: return "ArrayPacked64IndexStore"
-	
 	var arr : PackedInt64Array = []
 	func _init():
 		arr.resize(500)
@@ -60,8 +54,6 @@ class ArrayPacked64IndexStore:
 
 class ArrayPacked32IndexStore:
 	extends IBenchmark
-	
-	func get_name()->String: return "ArrayPacked32IndexStore"
 	
 	var arr : PackedInt32Array = []
 	func _init():
@@ -80,8 +72,6 @@ class ArrayPacked32IndexStore:
 class DictionaryIndexStore:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionaryIndexStore"
-	
 	var arr : Dictionary = {}
 	func _init():
 		for i in 500: arr[i] = 0
@@ -98,8 +88,6 @@ class DictionaryIndexStore:
 
 class DictionaryTypedIndexStore:
 	extends IBenchmark
-	
-	func get_name()->String: return "DictionaryTypedIndexStore"
 	
 	var arr : Dictionary[int, int] = {}
 	func _init():
@@ -120,8 +108,6 @@ class DictionaryTypedIndexStore:
 class ArrayTypedStringIndexStore:
 	extends IBenchmark
 	
-	func get_name()->String: return "ArrayTypedStringIndexStore"
-	
 	var arr : Array[String] = []
 	func _init():
 		arr.resize(500)
@@ -140,8 +126,6 @@ class ArrayTypedStringIndexStore:
 class ArrayPackedStringIndexStore:
 	extends IBenchmark
 	
-	func get_name()->String: return "ArrayPackedStringIndexStore"
-	
 	var arr : PackedStringArray = []
 	func _init():
 		arr.resize(500)
@@ -159,7 +143,7 @@ class ArrayPackedStringIndexStore:
 
 
 
-
+class _Blank1: pass
 ######################################################
 
 
@@ -168,8 +152,6 @@ class ArrayPackedStringIndexStore:
 
 class DictionaryDynNamedStoreMember:
 	extends IBenchmark
-	
-	func get_name()->String: return "DictionaryDynNamedStoreMember"
 	
 	var dict :Dictionary = {}
 	func _init() -> void:
@@ -238,8 +220,6 @@ class DictionaryDynNamedStoreMember:
 class DictionaryNamedStoreMember:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionaryNamedStoreMember"
-	
 	var dict :Dictionary = {}
 	func _init() -> void:
 		dict.clear()
@@ -306,8 +286,6 @@ class DictionaryNamedStoreMember:
 
 class DictionaryTypedNamedStoreMember:
 	extends IBenchmark
-	
-	func get_name()->String: return "DictionaryTypedNamedStoreMember"
 	
 	var dict :Dictionary[String, Variant] = {}
 	func _init() -> void:
@@ -379,8 +357,6 @@ class DictionaryTypedNamedStoreMember:
 class DictionaryNamedStoreIndexer:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionaryNamedStoreIndexer"
-	
 	var dict :Dictionary = {}
 	func _init() -> void:
 		dict.clear()
@@ -448,8 +424,6 @@ class DictionaryNamedStoreIndexer:
 
 class DictionaryTypedNamedStoreIndexer:
 	extends IBenchmark
-	
-	func get_name()->String: return "DictionaryTypedNamedStoreIndexer"
 	
 	var dict :Dictionary[String, Variant] = {}
 	func _init() -> void:
@@ -519,8 +493,6 @@ class DictionaryTypedNamedStoreIndexer:
 class DictionarySetNamedStore:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionarySetNamedStore"
-	
 	var dict :Dictionary[String, Variant] = {}
 	func _init() -> void:
 		dict.clear()
@@ -587,8 +559,6 @@ class DictionarySetNamedStore:
 
 class DictionarySetDynNamedStore:
 	extends IBenchmark
-	
-	func get_name()->String: return "DictionarySetDynNamedStore"
 	
 	var dict :Dictionary[String, Variant] = {}
 	func _init() -> void:
@@ -711,8 +681,6 @@ class _TestDatastruct:
 class ObjectTypedNamedStoreMember:
 	extends IBenchmark
 	
-	func get_name()->String: return "ObjectTypedNamedStoreMember"
-	
 	var dict := _TestDatastruct.new()
 	
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
@@ -775,8 +743,6 @@ class ObjectTypedNamedStoreMember:
 
 class ObjectDynNamedStoreMember:
 	extends IBenchmark
-	
-	func get_name()->String: return "ObjectDynNamedStoreMember"
 	
 	var dict := _TestDatastruct.new()
 	
@@ -842,8 +808,6 @@ class ObjectDynNamedStoreMember:
 class ObjectDynNamedStoreIndexer:
 	extends IBenchmark
 	
-	func get_name()->String: return "ObjectDynNamedStoreIndexer"
-	
 	var dict := _TestDatastruct.new()
 
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
@@ -907,8 +871,6 @@ class ObjectDynNamedStoreIndexer:
 
 class ObjectTypedNamedStoreIndexer:
 	extends IBenchmark
-	
-	func get_name()->String: return "ObjectTypedNamedStoreIndexer"
 	
 	var dict := _TestDatastruct.new()
 
@@ -977,8 +939,6 @@ class ObjectTypedNamedStoreIndexer:
 class ObjectSetNamedStore:
 	extends IBenchmark
 	
-	func get_name()->String: return "ObjectSetNamedStore"
-	
 	var dict := _TestDatastruct.new()
 	
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
@@ -1041,8 +1001,6 @@ class ObjectSetNamedStore:
 
 class ObjectSetDynNamedStore:
 	extends IBenchmark
-	
-	func get_name()->String: return "ObjectSetDynNamedStore"
 	
 	var dict := _TestDatastruct.new()
 	

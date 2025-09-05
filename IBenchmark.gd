@@ -1,8 +1,5 @@
 class_name IBenchmark
 
-func get_name()->String:
-	return (self.get_script() as Script).get_global_name()
-
 func prepare(repetitions: int)->void:
 	pass
 

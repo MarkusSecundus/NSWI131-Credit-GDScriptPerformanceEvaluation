@@ -1,117 +1,10 @@
 extends Node
 class_name BenchMain
 
-var iteration_benchmarks : Array[IBenchmark] = [
-	IterationBenchmarks.ForeachNumber.new(),
-	IterationBenchmarks.ForeachNumberExplicit.new(),
-	IterationBenchmarks.ForeachVector2i.new(),
-	IterationBenchmarks.ForeachRange.new(),
-	IterationBenchmarks.ForeachRange3.new(),
-	IterationBenchmarks.ForeachRangeB.new(),
-	IterationBenchmarks.ForeachRangeExplicit.new(),
-	IterationBenchmarks.ForeachRangeExplicitDyn.new(),
-	IterationBenchmarks.ForeachRangeConditioned.new(),
-	IterationBenchmarks.ForeachRangeNumberConditioned.new(),
-	IterationBenchmarks.ForeachNumberExplicitDyn.new(),
-	IterationBenchmarks.ForeachManual.new(),
-	null,
-	IterationBenchmarks.ForeachFloatManual.new(),
-	IterationBenchmarks.ForeachFloatNumber.new(),
-	IterationBenchmarks.ForeachFloatNumberExplicit.new(),
-	IterationBenchmarks.ForeachFloatNumberDyn.new(),
-	IterationBenchmarks.ForeachFloatVector2f.new(),
-	IterationBenchmarks.ForeachFloatRange.new(),
-	null,
-	null,
-	IterationBenchmarks.ForeachArrayDyn.new(),
-	IterationBenchmarks.ForeachArray.new(),
-	IterationBenchmarks.ForeachArrayTyped.new(),
-	IterationBenchmarks.ForeachArrayPacked64.new(),
-	IterationBenchmarks.ForeachArrayPacked32.new(),
-	IterationBenchmarks.ForeachDictTyped.new(),
-	IterationBenchmarks.ForeachDict.new(),
-	IterationBenchmarks.ForeachDictDyn.new(),
-]
-var conversion_benchmarks : Array[IBenchmark] = [
-	ConversionBenchmarks.IntToFloatMultiply.new(),
-	ConversionBenchmarks.IntToFloatFunction.new(),
-]
 
-var datastruct_benchmarks : Array[IBenchmark] = [
-	DatastructBenchmarks.ArrayIndexStore.new(),
-	DatastructBenchmarks.ArrayTypedIndexStore.new(),
-	DatastructBenchmarks.ArrayPacked64IndexStore.new(),
-	DatastructBenchmarks.ArrayPacked32IndexStore.new(),
-	null,
-	DatastructBenchmarks.DictionaryIndexStore.new(),
-	DatastructBenchmarks.DictionaryTypedIndexStore.new(),
-	null,
-	null,
-	DatastructBenchmarks.DictionaryDynNamedStoreMember.new(),
-	DatastructBenchmarks.DictionaryNamedStoreMember.new(),
-	DatastructBenchmarks.DictionaryTypedNamedStoreMember.new(),
-	DatastructBenchmarks.DictionaryNamedStoreIndexer.new(),
-	DatastructBenchmarks.DictionaryTypedNamedStoreIndexer.new(),
-	DatastructBenchmarks.DictionarySetNamedStore.new(),
-	DatastructBenchmarks.DictionarySetDynNamedStore.new(),
-	null,
-	DatastructBenchmarks.ObjectDynNamedStoreMember.new(),
-	DatastructBenchmarks.ObjectTypedNamedStoreMember.new(),
-	DatastructBenchmarks.ObjectDynNamedStoreIndexer.new(),
-	DatastructBenchmarks.ObjectTypedNamedStoreIndexer.new(),
-	DatastructBenchmarks.ObjectSetNamedStore.new(),
-	DatastructBenchmarks.ObjectSetDynNamedStore.new(),
-]
 
-var datastruct_benchmarks2 : Array[IBenchmark] = [
-	DatastructBenchmarksLoad.ArrayIndexLoad.new(),
-	DatastructBenchmarksLoad.ArrayTypedIndexLoad.new(),
-	DatastructBenchmarksLoad.ArrayPacked64IndexLoad.new(),
-	DatastructBenchmarksLoad.ArrayPacked32IndexLoad.new(),
-	null,
-	DatastructBenchmarksLoad.DictionaryIndexLoad.new(),
-	DatastructBenchmarksLoad.DictionaryDynIndexLoad.new(),
-	DatastructBenchmarksLoad.DictionaryTypedIndexLoad.new(),
-	null,
-	null,
-	DatastructBenchmarksLoad.DictionaryTypedNamedLoad.new(),
-	DatastructBenchmarksLoad.DictionaryNamedLoad.new(),
-	DatastructBenchmarksLoad.DictionaryGetNamedLoad.new(),
-	DatastructBenchmarksLoad.DictionaryGetDynNamedLoad.new(),
-	null,
-	DatastructBenchmarksLoad.ObjectDynNamedLoad.new(),
-	DatastructBenchmarksLoad.ObjectTypedNamedLoad.new(),
-	DatastructBenchmarksLoad.ObjectGetNamedLoad.new(),
-	DatastructBenchmarksLoad.ObjectGetDynNamedLoad.new(),
-]
+var BENCHMARK_PARENT : GDScript = DatastructBenchmarksLoad
 
-var arithmetic_benchmarks : Array[IBenchmark] = [
-	ArithmeticBenchmarks.AddLiteral.new(),
-	ArithmeticBenchmarks.AddLiteralSingleline.new(),
-	ArithmeticBenchmarks.AddLocal.new(),
-	ArithmeticBenchmarks.AddInstance.new(),
-	ArithmeticBenchmarks.AddStatic.new(),
-	ArithmeticBenchmarks.AddInstanceMethod.new(),
-	ArithmeticBenchmarks.AddInstanceProperty.new(),
-	ArithmeticBenchmarks.AddStaticMethod.new(),
-	ArithmeticBenchmarks.AddStaticProperty.new(),
-	ArithmeticBenchmarks.AddCallable.new(),
-	ArithmeticBenchmarks.MultiplyLiteral.new(),
-	ArithmeticBenchmarks.DivideLiteral.new(),
-	null,
-	ArithmeticBenchmarks.DoNothing.new(),
-	ArithmeticBenchmarks.DoNothingBig.new(),
-	ArithmeticBenchmarks.DoNothingLiteral.new(),
-	ArithmeticBenchmarks.DoNothingLiteral2.new(),
-	ArithmeticBenchmarks.DoNothingLiteral3.new(),
-	ArithmeticBenchmarks.DoNothingProperty.new(),
-	ArithmeticBenchmarks.DoNothingAssign.new(),
-	ArithmeticBenchmarks.DoNothingAssignDyn.new(),
-	ArithmeticBenchmarks.DoNothingIndexArray.new(),
-	ArithmeticBenchmarks.DoNothingIndexDict.new(),
-]
-
-var BENCHMARKS : Array[IBenchmark] = datastruct_benchmarks#arithmetic_benchmarks#conversion_benchmarks#iteration_benchmarks#datastruct_benchmarks
 
 static var WARMUP_REPETITIONS_COUNT = 10000
 static var REPETITIONS_COUNT = 50000
@@ -136,7 +29,13 @@ var test_bench : Array[IBenchmark] = [Test.new()]
 
 
 func dump_disassemblies()->void:
-	for bench in BENCHMARKS:
+	var constants_map := BENCHMARK_PARENT.get_script_constant_map()
+	for bench_name in constants_map:
+		var bench_raw = constants_map[bench_name].new()
+		if not (bench_raw is IBenchmark):
+			print()
+			continue
+		var bench := bench_raw as IBenchmark
 		print("{0}...".format([bench.get_name()]))
 		OS.disassemble_function(bench.run_benchmark)
 		print("----------------------------------------------------------\n")
@@ -146,10 +45,13 @@ func _ready() -> void:
 	#OS.disassemble_function(ArithmeticBenchmarks.DoNothingIndexDict.new().run_benchmark); return
 	#dump_disassemblies(); return
 	var dummy_retval : Array = [null]
-	for bench in BENCHMARKS:
-		if bench == null:
+	var constants_map := BENCHMARK_PARENT.get_script_constant_map()
+	for bench_name in constants_map:
+		var bench_raw = constants_map[bench_name].new()
+		if not (bench_raw is IBenchmark):
 			print()
 			continue
+		var bench := bench_raw as IBenchmark
 		bench.prepare(WARMUP_REPETITIONS_COUNT)
 		bench.run_benchmark(WARMUP_REPETITIONS_COUNT, dummy_retval)
 		bench.prepare(REPETITIONS_COUNT)
@@ -163,7 +65,7 @@ func _ready() -> void:
 		var free_count := OS.get_tracked_free_count()
 		var time_per_repetition : float = float(measured_time)/REPETITIONS_COUNT
 		print("{0} | {1} ms per iteration ({2} ms total) | (allocs: {3} - {4} B) (reallocs: {5} - {6} B), (frees: {7})".format([
-			bench.get_name(), time_per_repetition*0.001, measured_time*0.001,
+			bench_name, time_per_repetition*0.001, measured_time*0.001,
 			allocations_count, allocated_bytes, reallocations_count, reallocated_bytes, free_count
 		]))
 		

@@ -2,8 +2,6 @@ class_name ArithmeticBenchmarks
 
 class AddLiteral:
 	extends IBenchmark
-	
-	func get_name()->String: return "AddLiteral"
 
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
@@ -70,8 +68,6 @@ class AddLiteral:
 
 class AddLiteralSingleline:
 	extends IBenchmark
-	
-	func get_name()->String: return "AddLiteralSingleline"
 
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
@@ -91,8 +87,6 @@ class AddLiteralSingleline:
 class MultiplyLiteral:
 	extends IBenchmark
 	
-	func get_name()->String: return "MultiplyLiteral"
-
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
@@ -159,8 +153,6 @@ class MultiplyLiteral:
 class DivideLiteral:
 	extends IBenchmark
 	
-	func get_name()->String: return "DivideLiteral"
-
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
@@ -226,8 +218,6 @@ class DivideLiteral:
 
 class AddStatic:
 	extends IBenchmark
-	
-	func get_name()->String: return "AddStatic"
 	
 	static var C : int = 42
 
@@ -296,8 +286,6 @@ class AddStatic:
 
 class AddInstance:
 	extends IBenchmark
-	
-	func get_name()->String: return "AddInstance"
 	
 	var C : int = 42
 
@@ -368,8 +356,6 @@ class AddInstance:
 class AddStaticProperty:
 	extends IBenchmark
 	
-	func get_name()->String: return "AddStaticProperty"
-	
 	static var C : int:
 		get: return 42
 
@@ -438,8 +424,6 @@ class AddStaticProperty:
 
 class AddInstanceProperty:
 	extends IBenchmark
-	
-	func get_name()->String: return "AddInstanceProperty"
 	
 	var C : int:
 		get: return 42
@@ -510,8 +494,6 @@ class AddInstanceProperty:
 class AddStaticMethod:
 	extends IBenchmark
 	
-	func get_name()->String: return "AddStaticMethod"
-	
 	static func C()->int:
 		return 42
 
@@ -581,8 +563,6 @@ class AddStaticMethod:
 class AddInstanceMethod:
 	extends IBenchmark
 	
-	func get_name()->String: return "AddInstanceMethod"
-	
 	func C()->int:
 		return 42
 
@@ -651,8 +631,6 @@ class AddInstanceMethod:
 
 class AddCallable:
 	extends IBenchmark
-	
-	func get_name()->String: return "AddCallable"
 	
 	static func C_impl()->int:
 		return 42
@@ -724,8 +702,6 @@ class AddCallable:
 class AddLocal:
 	extends IBenchmark
 	
-	func get_name()->String: return "AddLocal"
-
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
@@ -796,7 +772,8 @@ class AddLocal:
 
 
 
-
+class _Blank1: pass
+class _Blank2: pass
 
 
 
@@ -807,8 +784,6 @@ class AddLocal:
 class DoNothing:
 	extends IBenchmark
 	
-	func get_name()->String: return "DoNothing"
-
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
@@ -868,11 +843,9 @@ class DoNothing:
 		
 		return Time.get_ticks_usec() - start_time
 
-class DoNothingLiteral:
+class DoNothingLiteralString:
 	extends IBenchmark
 	
-	func get_name()->String: return "DoNothingLiteral"
-
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
@@ -932,11 +905,9 @@ class DoNothingLiteral:
 		
 		return Time.get_ticks_usec() - start_time
 
-class DoNothingLiteral2:
+class DoNothingLiteralStringSums:
 	extends IBenchmark
 	
-	func get_name()->String: return "DoNothingLiteral2"
-
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
@@ -996,11 +967,9 @@ class DoNothingLiteral2:
 		
 		return Time.get_ticks_usec() - start_time
 
-class DoNothingLiteral3:
+class DoNothingLiteralIntSums:
 	extends IBenchmark
 	
-	func get_name()->String: return "DoNothingLiteral3"
-
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
@@ -1063,8 +1032,6 @@ class DoNothingLiteral3:
 class DoNothingProperty:
 	extends IBenchmark
 	
-	func get_name()->String: return "DoNothingProperty"
-
 	var p: int:
 		get: return 1
 
@@ -1130,8 +1097,6 @@ class DoNothingProperty:
 class DoNothingIndexArray:
 	extends IBenchmark
 	
-	func get_name()->String: return "DoNothingIndexArray"
-
 	var p: int:
 		get: return 1
 
@@ -1197,8 +1162,6 @@ class DoNothingIndexArray:
 class DoNothingIndexDict:
 	extends IBenchmark
 	
-	func get_name()->String: return "DoNothingIndexDict"
-
 	var p: int:
 		get: return 1
 
@@ -1264,8 +1227,6 @@ class DoNothingIndexDict:
 class DoNothingAssign:
 	extends IBenchmark
 	
-	func get_name()->String: return "DoNothingAssign"
-
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
@@ -1328,8 +1289,6 @@ class DoNothingAssign:
 class DoNothingAssignDyn:
 	extends IBenchmark
 	
-	func get_name()->String: return "DoNothingAssignDyn"
-
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
@@ -1392,8 +1351,6 @@ class DoNothingAssignDyn:
 class DoNothingBig:
 	extends IBenchmark
 	
-	func get_name()->String: return "DoNothingBig"
-
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		

@@ -4,8 +4,6 @@ class_name ConversionBenchmarks
 class IntToFloatMultiply:
 	extends IBenchmark
 	
-	func get_name()->String: return "IntToFloatMultiply"
-
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
@@ -70,8 +68,6 @@ class IntToFloatMultiply:
 class IntToFloatFunction:
 	extends IBenchmark
 	
-	func get_name()->String: return "IntToFloatFunction"
-
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
