@@ -148,6 +148,7 @@ public:
 	void print_rich(const char *p_format, ...) _PRINTF_FORMAT_ATTRIBUTE_2_3;
 	void printerr(const char *p_format, ...) _PRINTF_FORMAT_ATTRIBUTE_2_3;
 
+
 	virtual String get_stdin_string(int64_t p_buffer_size = 1024) = 0;
 	virtual PackedByteArray get_stdin_buffer(int64_t p_buffer_size = 1024) = 0;
 
@@ -172,6 +173,9 @@ public:
 		bool generate_temp_files = false;
 		PackedStringArray *library_dependencies = nullptr;
 	};
+
+	
+
 
 	virtual Error open_dynamic_library(const String &p_path, void *&p_library_handle, GDExtensionData *p_data = nullptr) { return ERR_UNAVAILABLE; }
 	virtual Error close_dynamic_library(void *p_library_handle) { return ERR_UNAVAILABLE; }
@@ -369,5 +373,33 @@ public:
 	OS();
 	virtual ~OS();
 };
+
+#define debuglog(fmt, ...) OS::get_singleton()->print("%.6f s | " fmt "\n", OS::get_singleton()->get_ticks_usec() * 0.000001, ##__VA_ARGS__)
+
+
+template<typename TFunc>
+struct on_raii_t {
+
+	on_raii_t(TFunc &&the_func) :
+			func(std::move(the_func))
+		{}
+
+	~on_raii_t() {
+		func();
+	}
+
+	TFunc func;
+};
+
+template<typename TFunc>
+static on_raii_t<TFunc> on_raii(TFunc&& the_func) {
+	return on_raii_t<TFunc>(std::move(the_func));
+}
+
+#define defer(...) auto _CONCAT(_deferer___, __LINE__) = on_raii([&]() {__VA_ARGS__ });
+ 
+#define trace_function(fmt, ...)           \
+	debuglog("START " fmt, ##__VA_ARGS__); \
+	auto _CONCAT(___, __LINE__) = on_raii([&]() { debuglog("END   " fmt, ##__VA_ARGS__); });
 
 #endif // OS_H
