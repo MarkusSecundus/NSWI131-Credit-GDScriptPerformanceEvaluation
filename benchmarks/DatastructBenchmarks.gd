@@ -1,19 +1,22 @@
 class_name DatastructBenchmarks
 
 
-class ArrayDynIndexStore:
+class ArrayIndexStore:
 	extends IBenchmark
 	
-	func get_name()->String: return "ArrayDynIndexStore"
+	func get_name()->String: return "ArrayIndexStore"
 	
+	var arr : Array = []
+	func _init():
+		arr.resize(500)
 
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
-			var arr : Array = []
+			var arr := self.arr
 			for i in 500:
-				arr.append(1)
+				arr[i] = 1
 			
 		return Time.get_ticks_usec() - start_time
 
@@ -21,14 +24,18 @@ class ArrayTypedIndexStore:
 	extends IBenchmark
 	
 	func get_name()->String: return "ArrayTypedIndexStore"
+	
+	var arr : Array[int] = []
+	func _init():
+		arr.resize(500)
 
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
-			var arr : Array[int] = []
+			var arr := self.arr
 			for i in 500:
-				arr.append(1)
+				arr[i] = 1
 			
 		return Time.get_ticks_usec() - start_time
 
@@ -36,14 +43,18 @@ class ArrayPacked64IndexStore:
 	extends IBenchmark
 	
 	func get_name()->String: return "ArrayPacked64IndexStore"
+	
+	var arr : PackedInt64Array = []
+	func _init():
+		arr.resize(500)
 
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
-			var arr : PackedInt64Array = []
+			var arr := self.arr
 			for i in 500:
-				arr.append(1)
+				arr[i] = 1
 			
 		return Time.get_ticks_usec() - start_time
 
@@ -51,27 +62,35 @@ class ArrayPacked32IndexStore:
 	extends IBenchmark
 	
 	func get_name()->String: return "ArrayPacked32IndexStore"
+	
+	var arr : PackedInt32Array = []
+	func _init():
+		arr.resize(500)
 
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
-			var arr : PackedInt32Array = []
+			var arr := self.arr
 			for i in 500:
-				arr.append(1)
+				arr[i] = 1
 			
 		return Time.get_ticks_usec() - start_time
 
-class DictionaryDynIndexStore:
+class DictionaryIndexStore:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionaryDynIndexStore"
+	func get_name()->String: return "DictionaryIndexStore"
+	
+	var arr : Dictionary = {}
+	func _init():
+		for i in 500: arr[i] = 0
 
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
-			var arr : Dictionary = {}
+			var arr := self.arr
 			for i in 500:
 				arr[i] = 1
 			
@@ -81,12 +100,16 @@ class DictionaryTypedIndexStore:
 	extends IBenchmark
 	
 	func get_name()->String: return "DictionaryTypedIndexStore"
+	
+	var arr : Dictionary[int, int] = {}
+	func _init():
+		for i in 500: arr[i] = 0
 
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
-			var arr : Dictionary[int, int] = {}
+			var arr := self.arr
 			for i in 500:
 				arr[i] = 1
 			
@@ -94,16 +117,281 @@ class DictionaryTypedIndexStore:
 
 
 
-class DictionaryDynNamedStore:
+class ArrayTypedStringIndexStore:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionaryDynNamedStore"
+	func get_name()->String: return "ArrayTypedStringIndexStore"
+	
+	var arr : Array[String] = []
+	func _init():
+		arr.resize(500)
 
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
-			var dict : Dictionary = {}
+			var arr := self.arr
+			for i in 500:
+				arr[i] = "abcdef"
+			
+		return Time.get_ticks_usec() - start_time
+
+
+class ArrayPackedStringIndexStore:
+	extends IBenchmark
+	
+	func get_name()->String: return "ArrayPackedStringIndexStore"
+	
+	var arr : PackedStringArray = []
+	func _init():
+		arr.resize(500)
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var arr := self.arr
+			for i in 500:
+				arr[i] = "abcdef"
+			
+		return Time.get_ticks_usec() - start_time
+
+
+
+
+
+######################################################
+
+
+
+
+
+class DictionaryDynNamedStoreMember:
+	extends IBenchmark
+	
+	func get_name()->String: return "DictionaryDynNamedStoreMember"
+	
+	var dict :Dictionary = {}
+	func _init() -> void:
+		dict.clear()
+		for n in DatastructBenchmarksLoad._TEST_NAMES:
+			dict[n] = 2
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var dict :Variant = self.dict
+			dict._00 = 1
+			dict._01 = 1
+			dict._02 = 1
+			dict._03 = 1
+			dict._04 = 1
+			dict._05 = 1
+			dict._06 = 1
+			dict._07 = 1
+			dict._08 = 1
+			dict._09 = 1
+			dict._10 = 1
+			dict._11 = 1
+			dict._12 = 1
+			dict._13 = 1
+			dict._14 = 1
+			dict._15 = 1
+			dict._16 = 1
+			dict._17 = 1
+			dict._18 = 1
+			dict._19 = 1
+			dict._20 = 1
+			dict._21 = 1
+			dict._22 = 1
+			dict._23 = 1
+			dict._24 = 1
+			dict._25 = 1
+			dict._26 = 1
+			dict._27 = 1
+			dict._28 = 1
+			dict._29 = 1
+			dict._30 = 1
+			dict._31 = 1
+			dict._32 = 1
+			dict._33 = 1
+			dict._34 = 1
+			dict._35 = 1
+			dict._36 = 1
+			dict._37 = 1
+			dict._38 = 1
+			dict._39 = 1
+			dict._40 = 1
+			dict._41 = 1
+			dict._42 = 1
+			dict._43 = 1
+			dict._44 = 1
+			dict._45 = 1
+			dict._46 = 1
+			dict._47 = 1
+			dict._48 = 1
+			dict._49 = 1
+			
+		return Time.get_ticks_usec() - start_time
+
+class DictionaryNamedStoreMember:
+	extends IBenchmark
+	
+	func get_name()->String: return "DictionaryNamedStoreMember"
+	
+	var dict :Dictionary = {}
+	func _init() -> void:
+		dict.clear()
+		for n in DatastructBenchmarksLoad._TEST_NAMES:
+			dict[n] = 2
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var dict := self.dict
+			dict._00 = 1
+			dict._01 = 1
+			dict._02 = 1
+			dict._03 = 1
+			dict._04 = 1
+			dict._05 = 1
+			dict._06 = 1
+			dict._07 = 1
+			dict._08 = 1
+			dict._09 = 1
+			dict._10 = 1
+			dict._11 = 1
+			dict._12 = 1
+			dict._13 = 1
+			dict._14 = 1
+			dict._15 = 1
+			dict._16 = 1
+			dict._17 = 1
+			dict._18 = 1
+			dict._19 = 1
+			dict._20 = 1
+			dict._21 = 1
+			dict._22 = 1
+			dict._23 = 1
+			dict._24 = 1
+			dict._25 = 1
+			dict._26 = 1
+			dict._27 = 1
+			dict._28 = 1
+			dict._29 = 1
+			dict._30 = 1
+			dict._31 = 1
+			dict._32 = 1
+			dict._33 = 1
+			dict._34 = 1
+			dict._35 = 1
+			dict._36 = 1
+			dict._37 = 1
+			dict._38 = 1
+			dict._39 = 1
+			dict._40 = 1
+			dict._41 = 1
+			dict._42 = 1
+			dict._43 = 1
+			dict._44 = 1
+			dict._45 = 1
+			dict._46 = 1
+			dict._47 = 1
+			dict._48 = 1
+			dict._49 = 1
+			
+		return Time.get_ticks_usec() - start_time
+
+class DictionaryTypedNamedStoreMember:
+	extends IBenchmark
+	
+	func get_name()->String: return "DictionaryTypedNamedStoreMember"
+	
+	var dict :Dictionary[String, Variant] = {}
+	func _init() -> void:
+		dict.clear()
+		for n in DatastructBenchmarksLoad._TEST_NAMES:
+			dict[n] = 2
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var dict := self.dict
+			dict._00 = 1
+			dict._01 = 1
+			dict._02 = 1
+			dict._03 = 1
+			dict._04 = 1
+			dict._05 = 1
+			dict._06 = 1
+			dict._07 = 1
+			dict._08 = 1
+			dict._09 = 1
+			dict._10 = 1
+			dict._11 = 1
+			dict._12 = 1
+			dict._13 = 1
+			dict._14 = 1
+			dict._15 = 1
+			dict._16 = 1
+			dict._17 = 1
+			dict._18 = 1
+			dict._19 = 1
+			dict._20 = 1
+			dict._21 = 1
+			dict._22 = 1
+			dict._23 = 1
+			dict._24 = 1
+			dict._25 = 1
+			dict._26 = 1
+			dict._27 = 1
+			dict._28 = 1
+			dict._29 = 1
+			dict._30 = 1
+			dict._31 = 1
+			dict._32 = 1
+			dict._33 = 1
+			dict._34 = 1
+			dict._35 = 1
+			dict._36 = 1
+			dict._37 = 1
+			dict._38 = 1
+			dict._39 = 1
+			dict._40 = 1
+			dict._41 = 1
+			dict._42 = 1
+			dict._43 = 1
+			dict._44 = 1
+			dict._45 = 1
+			dict._46 = 1
+			dict._47 = 1
+			dict._48 = 1
+			dict._49 = 1
+			
+		return Time.get_ticks_usec() - start_time
+
+
+
+
+class DictionaryNamedStoreIndexer:
+	extends IBenchmark
+	
+	func get_name()->String: return "DictionaryNamedStoreIndexer"
+	
+	var dict :Dictionary = {}
+	func _init() -> void:
+		dict.clear()
+		for n in DatastructBenchmarksLoad._TEST_NAMES:
+			dict[n] = 2
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var dict := self.dict
 			dict["_00"] = 1
 			dict["_01"] = 1
 			dict["_02"] = 1
@@ -158,16 +446,22 @@ class DictionaryDynNamedStore:
 		return Time.get_ticks_usec() - start_time
 
 
-class DictionaryTypedNamedStore:
+class DictionaryTypedNamedStoreIndexer:
 	extends IBenchmark
 	
-	func get_name()->String: return "DictionaryTypedNamedStore"
+	func get_name()->String: return "DictionaryTypedNamedStoreIndexer"
+	
+	var dict :Dictionary[String, Variant] = {}
+	func _init() -> void:
+		dict.clear()
+		for n in DatastructBenchmarksLoad._TEST_NAMES:
+			dict[n] = 2
 
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
-			var dict : Dictionary[String, int] = {}
+			var dict := self.dict
 			dict["_00"] = 1
 			dict["_01"] = 1
 			dict["_02"] = 1
@@ -220,17 +514,93 @@ class DictionaryTypedNamedStore:
 			dict["_49"] = 1
 			
 		return Time.get_ticks_usec() - start_time
+
 
 class DictionarySetNamedStore:
 	extends IBenchmark
 	
 	func get_name()->String: return "DictionarySetNamedStore"
+	
+	var dict :Dictionary[String, Variant] = {}
+	func _init() -> void:
+		dict.clear()
+		for n in DatastructBenchmarksLoad._TEST_NAMES:
+			dict[n] = 2
 
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
-			var dict : Dictionary[String, int] = {}
+			var dict := self.dict
+			dict.set("_00", 1)
+			dict.set("_01", 1)
+			dict.set("_02", 1)
+			dict.set("_03", 1)
+			dict.set("_04", 1)
+			dict.set("_05", 1)
+			dict.set("_06", 1)
+			dict.set("_07", 1)
+			dict.set("_08", 1)
+			dict.set("_09", 1)
+			dict.set("_10", 1)
+			dict.set("_11", 1)
+			dict.set("_12", 1)
+			dict.set("_13", 1)
+			dict.set("_14", 1)
+			dict.set("_15", 1)
+			dict.set("_16", 1)
+			dict.set("_17", 1)
+			dict.set("_18", 1)
+			dict.set("_19", 1)
+			dict.set("_20", 1)
+			dict.set("_21", 1)
+			dict.set("_22", 1)
+			dict.set("_23", 1)
+			dict.set("_24", 1)
+			dict.set("_25", 1)
+			dict.set("_26", 1)
+			dict.set("_27", 1)
+			dict.set("_28", 1)
+			dict.set("_29", 1)
+			dict.set("_30", 1)
+			dict.set("_31", 1)
+			dict.set("_32", 1)
+			dict.set("_33", 1)
+			dict.set("_34", 1)
+			dict.set("_35", 1)
+			dict.set("_36", 1)
+			dict.set("_37", 1)
+			dict.set("_38", 1)
+			dict.set("_39", 1)
+			dict.set("_40", 1)
+			dict.set("_41", 1)
+			dict.set("_42", 1)
+			dict.set("_43", 1)
+			dict.set("_44", 1)
+			dict.set("_45", 1)
+			dict.set("_46", 1)
+			dict.set("_47", 1)
+			dict.set("_48", 1)
+			dict.set("_49", 1)
+			
+		return Time.get_ticks_usec() - start_time
+
+class DictionarySetDynNamedStore:
+	extends IBenchmark
+	
+	func get_name()->String: return "DictionarySetDynNamedStore"
+	
+	var dict :Dictionary[String, Variant] = {}
+	func _init() -> void:
+		dict.clear()
+		for n in DatastructBenchmarksLoad._TEST_NAMES:
+			dict[n] = 2
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var dict :Variant = self.dict
 			dict.set("_00", 1)
 			dict.set("_01", 1)
 			dict.set("_02", 1)
@@ -285,7 +655,7 @@ class DictionarySetNamedStore:
 		return Time.get_ticks_usec() - start_time
 
 
-class TestDatastruct:
+class _TestDatastruct:
 		var _00 : int
 		var _01 : int
 		var _02 : int
@@ -338,16 +708,18 @@ class TestDatastruct:
 		var _49 : int
 
 
-class ObjectTypedNamedStore:
+class ObjectTypedNamedStoreMember:
 	extends IBenchmark
 	
-	func get_name()->String: return "ObjectTypedNamedStore"
+	func get_name()->String: return "ObjectTypedNamedStoreMember"
+	
+	var dict := _TestDatastruct.new()
 	
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
-			var dict := TestDatastruct.new()
+			var dict := self.dict
 			dict._00 = 1
 			dict._01 = 1
 			dict._02 = 1
@@ -401,16 +773,18 @@ class ObjectTypedNamedStore:
 			
 		return Time.get_ticks_usec() - start_time
 
-class ObjectDynNamedStore:
+class ObjectDynNamedStoreMember:
 	extends IBenchmark
 	
-	func get_name()->String: return "ObjectDynNamedStore"
+	func get_name()->String: return "ObjectDynNamedStoreMember"
+	
+	var dict := _TestDatastruct.new()
 	
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
-			var dict := TestDatastruct.new()
+			var dict :Variant = self.dict
 			dict._00 = 1
 			dict._01 = 1
 			dict._02 = 1
@@ -463,17 +837,220 @@ class ObjectDynNamedStore:
 			dict._49 = 1
 			
 		return Time.get_ticks_usec() - start_time
+
+
+class ObjectDynNamedStoreIndexer:
+	extends IBenchmark
+	
+	func get_name()->String: return "ObjectDynNamedStoreIndexer"
+	
+	var dict := _TestDatastruct.new()
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var dict : Variant = self.dict
+			dict["_00"] = 1
+			dict["_01"] = 1
+			dict["_02"] = 1
+			dict["_03"] = 1
+			dict["_04"] = 1
+			dict["_05"] = 1
+			dict["_06"] = 1
+			dict["_07"] = 1
+			dict["_08"] = 1
+			dict["_09"] = 1
+			dict["_10"] = 1
+			dict["_11"] = 1
+			dict["_12"] = 1
+			dict["_13"] = 1
+			dict["_14"] = 1
+			dict["_15"] = 1
+			dict["_16"] = 1
+			dict["_17"] = 1
+			dict["_18"] = 1
+			dict["_19"] = 1
+			dict["_20"] = 1
+			dict["_21"] = 1
+			dict["_22"] = 1
+			dict["_23"] = 1
+			dict["_24"] = 1
+			dict["_25"] = 1
+			dict["_26"] = 1
+			dict["_27"] = 1
+			dict["_28"] = 1
+			dict["_29"] = 1
+			dict["_30"] = 1
+			dict["_31"] = 1
+			dict["_32"] = 1
+			dict["_33"] = 1
+			dict["_34"] = 1
+			dict["_35"] = 1
+			dict["_36"] = 1
+			dict["_37"] = 1
+			dict["_38"] = 1
+			dict["_39"] = 1
+			dict["_40"] = 1
+			dict["_41"] = 1
+			dict["_42"] = 1
+			dict["_43"] = 1
+			dict["_44"] = 1
+			dict["_45"] = 1
+			dict["_46"] = 1
+			dict["_47"] = 1
+			dict["_48"] = 1
+			dict["_49"] = 1
+			
+		return Time.get_ticks_usec() - start_time
+
+
+class ObjectTypedNamedStoreIndexer:
+	extends IBenchmark
+	
+	func get_name()->String: return "ObjectTypedNamedStoreIndexer"
+	
+	var dict := _TestDatastruct.new()
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var dict := self.dict
+			dict["_00"] = 1
+			dict["_01"] = 1
+			dict["_02"] = 1
+			dict["_03"] = 1
+			dict["_04"] = 1
+			dict["_05"] = 1
+			dict["_06"] = 1
+			dict["_07"] = 1
+			dict["_08"] = 1
+			dict["_09"] = 1
+			dict["_10"] = 1
+			dict["_11"] = 1
+			dict["_12"] = 1
+			dict["_13"] = 1
+			dict["_14"] = 1
+			dict["_15"] = 1
+			dict["_16"] = 1
+			dict["_17"] = 1
+			dict["_18"] = 1
+			dict["_19"] = 1
+			dict["_20"] = 1
+			dict["_21"] = 1
+			dict["_22"] = 1
+			dict["_23"] = 1
+			dict["_24"] = 1
+			dict["_25"] = 1
+			dict["_26"] = 1
+			dict["_27"] = 1
+			dict["_28"] = 1
+			dict["_29"] = 1
+			dict["_30"] = 1
+			dict["_31"] = 1
+			dict["_32"] = 1
+			dict["_33"] = 1
+			dict["_34"] = 1
+			dict["_35"] = 1
+			dict["_36"] = 1
+			dict["_37"] = 1
+			dict["_38"] = 1
+			dict["_39"] = 1
+			dict["_40"] = 1
+			dict["_41"] = 1
+			dict["_42"] = 1
+			dict["_43"] = 1
+			dict["_44"] = 1
+			dict["_45"] = 1
+			dict["_46"] = 1
+			dict["_47"] = 1
+			dict["_48"] = 1
+			dict["_49"] = 1
+			
+		return Time.get_ticks_usec() - start_time
+
+
+
+
 
 class ObjectSetNamedStore:
 	extends IBenchmark
 	
 	func get_name()->String: return "ObjectSetNamedStore"
 	
+	var dict := _TestDatastruct.new()
+	
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
-			var dict := TestDatastruct.new()
+			var dict := self.dict
+			dict.set("_00",  1)
+			dict.set("_01",  1)
+			dict.set("_02",  1)
+			dict.set("_03",  1)
+			dict.set("_04",  1)
+			dict.set("_05",  1)
+			dict.set("_06",  1)
+			dict.set("_07",  1)
+			dict.set("_08",  1)
+			dict.set("_09",  1)
+			dict.set("_10",  1)
+			dict.set("_11",  1)
+			dict.set("_12",  1)
+			dict.set("_13",  1)
+			dict.set("_14",  1)
+			dict.set("_15",  1)
+			dict.set("_16",  1)
+			dict.set("_17",  1)
+			dict.set("_18",  1)
+			dict.set("_19",  1)
+			dict.set("_20",  1)
+			dict.set("_21",  1)
+			dict.set("_22",  1)
+			dict.set("_23",  1)
+			dict.set("_24",  1)
+			dict.set("_25",  1)
+			dict.set("_26",  1)
+			dict.set("_27",  1)
+			dict.set("_28",  1)
+			dict.set("_29",  1)
+			dict.set("_30",  1)
+			dict.set("_31",  1)
+			dict.set("_32",  1)
+			dict.set("_33",  1)
+			dict.set("_34",  1)
+			dict.set("_35",  1)
+			dict.set("_36",  1)
+			dict.set("_37",  1)
+			dict.set("_38",  1)
+			dict.set("_39",  1)
+			dict.set("_40",  1)
+			dict.set("_41",  1)
+			dict.set("_42",  1)
+			dict.set("_43",  1)
+			dict.set("_44",  1)
+			dict.set("_45",  1)
+			dict.set("_46",  1)
+			dict.set("_47",  1)
+			dict.set("_48",  1)
+			dict.set("_49",  1)
+			
+		return Time.get_ticks_usec() - start_time
+
+class ObjectSetDynNamedStore:
+	extends IBenchmark
+	
+	func get_name()->String: return "ObjectSetDynNamedStore"
+	
+	var dict := _TestDatastruct.new()
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var dict :Variant = self.dict
 			dict.set("_00",  1)
 			dict.set("_01",  1)
 			dict.set("_02",  1)

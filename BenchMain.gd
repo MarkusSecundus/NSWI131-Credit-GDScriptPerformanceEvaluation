@@ -14,15 +14,15 @@ var iteration_benchmarks : Array[IBenchmark] = [
 	IterationBenchmarks.ForeachRangeNumberConditioned.new(),
 	IterationBenchmarks.ForeachNumberExplicitDyn.new(),
 	IterationBenchmarks.ForeachManual.new(),
-	
+	null,
 	IterationBenchmarks.ForeachFloatManual.new(),
 	IterationBenchmarks.ForeachFloatNumber.new(),
 	IterationBenchmarks.ForeachFloatNumberExplicit.new(),
 	IterationBenchmarks.ForeachFloatNumberDyn.new(),
 	IterationBenchmarks.ForeachFloatVector2f.new(),
 	IterationBenchmarks.ForeachFloatRange.new(),
-	
-	
+	null,
+	null,
 	IterationBenchmarks.ForeachArrayDyn.new(),
 	IterationBenchmarks.ForeachArray.new(),
 	IterationBenchmarks.ForeachArrayTyped.new(),
@@ -38,21 +38,51 @@ var conversion_benchmarks : Array[IBenchmark] = [
 ]
 
 var datastruct_benchmarks : Array[IBenchmark] = [
-	DatastructBenchmarks.ArrayDynIndexStore.new(),
+	DatastructBenchmarks.ArrayIndexStore.new(),
 	DatastructBenchmarks.ArrayTypedIndexStore.new(),
 	DatastructBenchmarks.ArrayPacked64IndexStore.new(),
 	DatastructBenchmarks.ArrayPacked32IndexStore.new(),
-	DatastructBenchmarks.DictionaryDynIndexStore.new(),
+	null,
+	DatastructBenchmarks.DictionaryIndexStore.new(),
 	DatastructBenchmarks.DictionaryTypedIndexStore.new(),
+	null,
+	null,
+	DatastructBenchmarks.DictionaryDynNamedStoreMember.new(),
+	DatastructBenchmarks.DictionaryNamedStoreMember.new(),
+	DatastructBenchmarks.DictionaryTypedNamedStoreMember.new(),
+	DatastructBenchmarks.DictionaryNamedStoreIndexer.new(),
+	DatastructBenchmarks.DictionaryTypedNamedStoreIndexer.new(),
+	DatastructBenchmarks.DictionarySetNamedStore.new(),
+	DatastructBenchmarks.DictionarySetDynNamedStore.new(),
+	null,
+	DatastructBenchmarks.ObjectDynNamedStoreMember.new(),
+	DatastructBenchmarks.ObjectTypedNamedStoreMember.new(),
+	DatastructBenchmarks.ObjectDynNamedStoreIndexer.new(),
+	DatastructBenchmarks.ObjectTypedNamedStoreIndexer.new(),
+	DatastructBenchmarks.ObjectSetNamedStore.new(),
+	DatastructBenchmarks.ObjectSetDynNamedStore.new(),
 ]
 
 var datastruct_benchmarks2 : Array[IBenchmark] = [
-	DatastructBenchmarks.DictionaryTypedNamedStore.new(),
-	DatastructBenchmarks.DictionaryDynNamedStore.new(),
-	DatastructBenchmarks.DictionarySetNamedStore.new(),
-	DatastructBenchmarks.ObjectTypedNamedStore.new(),
-	DatastructBenchmarks.ObjectDynNamedStore.new(),
-	DatastructBenchmarks.ObjectSetNamedStore.new(),
+	DatastructBenchmarksLoad.ArrayIndexLoad.new(),
+	DatastructBenchmarksLoad.ArrayTypedIndexLoad.new(),
+	DatastructBenchmarksLoad.ArrayPacked64IndexLoad.new(),
+	DatastructBenchmarksLoad.ArrayPacked32IndexLoad.new(),
+	null,
+	DatastructBenchmarksLoad.DictionaryIndexLoad.new(),
+	DatastructBenchmarksLoad.DictionaryDynIndexLoad.new(),
+	DatastructBenchmarksLoad.DictionaryTypedIndexLoad.new(),
+	null,
+	null,
+	DatastructBenchmarksLoad.DictionaryTypedNamedLoad.new(),
+	DatastructBenchmarksLoad.DictionaryNamedLoad.new(),
+	DatastructBenchmarksLoad.DictionaryGetNamedLoad.new(),
+	DatastructBenchmarksLoad.DictionaryGetDynNamedLoad.new(),
+	null,
+	DatastructBenchmarksLoad.ObjectDynNamedLoad.new(),
+	DatastructBenchmarksLoad.ObjectTypedNamedLoad.new(),
+	DatastructBenchmarksLoad.ObjectGetNamedLoad.new(),
+	DatastructBenchmarksLoad.ObjectGetDynNamedLoad.new(),
 ]
 
 var arithmetic_benchmarks : Array[IBenchmark] = [
@@ -68,6 +98,7 @@ var arithmetic_benchmarks : Array[IBenchmark] = [
 	ArithmeticBenchmarks.AddCallable.new(),
 	ArithmeticBenchmarks.MultiplyLiteral.new(),
 	ArithmeticBenchmarks.DivideLiteral.new(),
+	null,
 	ArithmeticBenchmarks.DoNothing.new(),
 	ArithmeticBenchmarks.DoNothingBig.new(),
 	ArithmeticBenchmarks.DoNothingLiteral.new(),
@@ -76,9 +107,11 @@ var arithmetic_benchmarks : Array[IBenchmark] = [
 	ArithmeticBenchmarks.DoNothingProperty.new(),
 	ArithmeticBenchmarks.DoNothingAssign.new(),
 	ArithmeticBenchmarks.DoNothingAssignDyn.new(),
+	ArithmeticBenchmarks.DoNothingIndexArray.new(),
+	ArithmeticBenchmarks.DoNothingIndexDict.new(),
 ]
 
-var BENCHMARKS : Array[IBenchmark] = iteration_benchmarks#arithmetic_benchmarks#conversion_benchmarks#iteration_benchmarks#datastruct_benchmarks
+var BENCHMARKS : Array[IBenchmark] = datastruct_benchmarks#arithmetic_benchmarks#conversion_benchmarks#iteration_benchmarks#datastruct_benchmarks
 
 static var WARMUP_REPETITIONS_COUNT = 10000
 static var REPETITIONS_COUNT = 50000
@@ -110,9 +143,13 @@ func dump_disassemblies()->void:
 
 
 func _ready() -> void:
+	#OS.disassemble_function(ArithmeticBenchmarks.DoNothingIndexDict.new().run_benchmark); return
 	#dump_disassemblies(); return
 	var dummy_retval : Array = [null]
 	for bench in BENCHMARKS:
+		if bench == null:
+			print()
+			continue
 		bench.prepare(WARMUP_REPETITIONS_COUNT)
 		bench.run_benchmark(WARMUP_REPETITIONS_COUNT, dummy_retval)
 		bench.prepare(REPETITIONS_COUNT)
@@ -130,4 +167,4 @@ func _ready() -> void:
 			allocations_count, allocated_bytes, reallocations_count, reallocated_bytes, free_count
 		]))
 		
-	print("BENCHMARKS FINISHED")
+	print("\n\nBENCHMARKS FINISHED")

@@ -1127,6 +1127,140 @@ class DoNothingProperty:
 		
 		return Time.get_ticks_usec() - start_time
 
+class DoNothingIndexArray:
+	extends IBenchmark
+	
+	func get_name()->String: return "DoNothingIndexArray"
+
+	var p: int:
+		get: return 1
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var arr : PackedInt32Array = [1]
+		for repetition in repetitions:
+			
+			arr[0] #0
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0] #9
+			arr[0] #10
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0] #19
+			arr[0] #20
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0] #29
+			arr[0] #30
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0] #39
+			arr[0] #40
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0] #49
+		
+		return Time.get_ticks_usec() - start_time
+
+class DoNothingIndexDict:
+	extends IBenchmark
+	
+	func get_name()->String: return "DoNothingIndexDict"
+
+	var p: int:
+		get: return 1
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var arr : Dictionary = {0: 1}
+		for repetition in repetitions:
+			
+			arr[0] #0
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0] #9
+			arr[0] #10
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0] #19
+			arr[0] #20
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0] #29
+			arr[0] #30
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0] #39
+			arr[0] #40
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0]
+			arr[0] #49
+		
+		return Time.get_ticks_usec() - start_time
+
 class DoNothingAssign:
 	extends IBenchmark
 	
