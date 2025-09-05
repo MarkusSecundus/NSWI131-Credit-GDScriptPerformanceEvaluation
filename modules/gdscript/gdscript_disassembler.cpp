@@ -1218,7 +1218,7 @@ void GDScriptFunction::disassemble(const Vector<String> &p_code_lines) const {
 					text += ": ";
 					text += p_code_lines[line];
 				} else {
-					text += "<line>";
+					text += "_";
 				}
 
 				incr += 2;
@@ -1298,6 +1298,10 @@ void GDScriptFunction::disassemble(const Vector<String> &p_code_lines) const {
 			print_line(text.as_string());
 		}
 	}
+	Array args;
+	args.append((int64_t)_code_size);
+	args.append((int64_t)(_code_size * sizeof(*_code_ptr)));
+	print_line(String("\nWhole function takes {0} opcodes ( = {1} bytes)").format(args));
 }
 
 #endif // DEBUG_ENABLED
