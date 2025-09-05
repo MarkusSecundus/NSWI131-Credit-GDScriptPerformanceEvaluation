@@ -3252,7 +3252,13 @@ void GDScriptCompiler::_get_function_ptr_replacements(HashMap<GDScriptFunction *
 	}
 }
 
+
+
+
 Error GDScriptCompiler::compile(const GDScriptParser *p_parser, GDScript *p_script, bool p_keep_state) {
+	//CharString func_name = p_script->fully_qualified_name.ascii();
+	//trace_function("compiling script: '%s'", func_name.get_data());
+
 	err_line = -1;
 	err_column = -1;
 	error = "";

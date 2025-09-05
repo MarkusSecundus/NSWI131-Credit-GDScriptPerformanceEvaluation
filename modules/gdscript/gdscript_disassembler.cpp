@@ -1218,7 +1218,7 @@ void GDScriptFunction::disassemble(const Vector<String> &p_code_lines) const {
 					text += ": ";
 					text += p_code_lines[line];
 				} else {
-					text += "";
+					text += "<line>";
 				}
 
 				incr += 2;

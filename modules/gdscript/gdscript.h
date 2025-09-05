@@ -90,6 +90,7 @@ class GDScript : public Script {
 	friend class GDScriptLambdaSelfCallable;
 	friend class GDScriptLanguage;
 	friend struct GDScriptUtilityFunctionsDefinitions;
+	friend struct GDScriptHelpers;
 
 	Ref<GDScriptNativeClass> native;
 	Ref<GDScript> base;
@@ -363,6 +364,7 @@ class GDScriptInstance : public ScriptInstance {
 	friend class GDScriptCompiler;
 	friend class GDScriptCache;
 	friend struct GDScriptUtilityFunctionsDefinitions;
+	friend struct GDScriptHelpers;
 
 	ObjectID owner_id;
 	Object *owner = nullptr;
@@ -663,5 +665,8 @@ public:
 	virtual void get_recognized_extensions(const Ref<Resource> &p_resource, List<String> *p_extensions) const override;
 	virtual bool recognize(const Ref<Resource> &p_resource) const override;
 };
+
+
+void disassemble_function(Callable c);
 
 #endif // GDSCRIPT_H

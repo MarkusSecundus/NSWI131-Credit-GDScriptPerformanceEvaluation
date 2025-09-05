@@ -470,16 +470,48 @@ void (*type_init_function_table[])(Variant *) = {
 #define METHOD_CALL_ON_NULL_VALUE_ERROR(method_pointer) "Cannot call method '" + (method_pointer)->get_name() + "' on a null value."
 #define METHOD_CALL_ON_FREED_INSTANCE_ERROR(method_pointer) "Cannot call method '" + (method_pointer)->get_name() + "' on a previously freed instance."
 
+
+
+//static const StringName measured_func_name("_my_test");
+//
+//static double exectime_acc = 0.0;
+//static uint64_t executions_count = 0;
+
+static thread_local int call_depth = 0;
+
+
+bool is_inside_gdscript_vm(void) {
+	return !!call_depth;
+}
+extern bool _vm_marker = false;
+
+
 Variant GDScriptFunction::call(GDScriptInstance *p_instance, const Variant **p_args, int p_argcount, Callable::CallError &r_err, CallState *p_state) {
 	OPCODES_TABLE;
 
+	//const bool is_measured = (this->name == measured_func_name);
+	//OS *const os = OS::get_singleton();
+	//uint64_t start_time;
+	//if (is_measured) {
+	//	start_time = os->get_ticks_usec();
+	//}
+	//defer({
+	//	if (is_measured) {
+	//		uint64_t end_time = os->get_ticks_usec();
+	//		exectime_acc += end_time;
+	//		++executions_count;
+	//		if (unlikely(!(executions_count & 65535))) {
+	//			double avg_time = exectime_acc / executions_count;
+	//			debuglog("%I64u : %.6f avg ", executions_count, avg_time * 0.000001);
+	//		}
+	//	}
+	//})
 	if (!_code_ptr) {
 		return _get_default_variant_for_data_type(return_type);
 	}
 
 	r_err.error = Callable::CallError::CALL_OK;
 
-	static thread_local int call_depth = 0;
 	if (unlikely(++call_depth > MAX_CALL_DEPTH)) {
 		call_depth--;
 #ifdef DEBUG_ENABLED
@@ -703,6 +735,11 @@ Variant GDScriptFunction::call(GDScriptInstance *p_instance, const Variant **p_a
 #endif
 
 	Variant *variant_addresses[ADDR_TYPE_MAX] = { stack, _constants_ptr, p_instance ? p_instance->members.ptrw() : nullptr };
+
+	if (_vm_marker) {
+		_vm_marker = false;
+	}
+
 
 #ifdef DEBUG_ENABLED
 	OPCODE_WHILE(ip < _code_size) {

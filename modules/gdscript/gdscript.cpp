@@ -3100,3 +3100,26 @@ void ResourceFormatSaverGDScript::get_recognized_extensions(const Ref<Resource> 
 bool ResourceFormatSaverGDScript::recognize(const Ref<Resource> &p_resource) const {
 	return Object::cast_to<GDScript>(*p_resource) != nullptr;
 }
+
+struct GDScriptHelpers {
+	static void disassemble_function(const Callable &c) {
+		Object *const o = c.get_object();
+		GDScriptInstance *scr = static_cast<GDScriptInstance *>(o->get_script_instance());
+		const GDScript *sptr = static_cast<GDScript *>(scr->get_script().ptr());
+		while (sptr) {
+			if (likely(sptr->valid)) {
+				HashMap<StringName, GDScriptFunction *>::ConstIterator E = sptr->member_functions.find(c.get_method());
+				if (E) {
+					PackedStringArray dummy;
+					E->value->disassemble(dummy);
+					break;
+				}
+			}
+			sptr = sptr->_base;
+		}
+	}
+};
+
+void disassemble_function(Callable c) {
+	GDScriptHelpers::disassemble_function(c);
+}
