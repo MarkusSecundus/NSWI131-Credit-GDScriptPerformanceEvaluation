@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6r2m58rxnw7t"]
+
+[ext_resource type="Script" uid="uid://bv2dvump3hgdn" path="res://BenchMain.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://bleycin61umgp" path="res://tool_test.gd" id="2_0xm2m"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_ig7tw")
+
+[node name="Tool" type="Node" parent="."]
+script = ExtResource("2_0xm2m")
