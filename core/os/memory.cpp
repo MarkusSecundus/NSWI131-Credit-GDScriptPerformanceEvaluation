@@ -64,6 +64,7 @@ SafeNumeric<uint64_t> Memory::max_usage;
 
 SafeNumeric<uint64_t> Memory::alloc_count;
 
+
 void *Memory::alloc_aligned_static(size_t p_bytes, size_t p_alignment) {
 	DEV_ASSERT(is_power_of_2(p_alignment));
 
@@ -96,6 +97,57 @@ void Memory::free_aligned_static(void *p_memory) {
 	free(p);
 }
 
+
+thread_local SafeFlag				is_tracking_memory;
+thread_local SafeNumeric<uint64_t>	tracked_alloc_count;
+thread_local SafeNumeric<uint64_t>	tracked_realloc_count;
+thread_local SafeNumeric<uint64_t>	tracked_free_count;
+thread_local SafeNumeric<uint64_t>	tracked_allocated_bytes;
+thread_local SafeNumeric<uint64_t>	tracked_reallocated_bytes;
+
+
+bool Memory::start_tracking_memory(void) {
+	if (is_tracking_memory.is_set()) {
+		return false;
+	}
+	is_tracking_memory.set();
+	tracked_alloc_count.set(0);
+	tracked_realloc_count.set(0);
+	tracked_free_count.set(0);
+	tracked_allocated_bytes.set(0);
+	tracked_reallocated_bytes.set(0);
+	return true;
+}
+
+bool Memory::stop_tracking_memory(void) {
+	if (!is_tracking_memory.is_set()) {
+		return false;
+	}
+	is_tracking_memory.clear();
+	return true;
+}
+
+uint64_t Memory::get_tracked_alloc_count(void) {
+	return tracked_alloc_count.get();
+}
+
+uint64_t Memory::get_tracked_realloc_count(void) {
+	return tracked_realloc_count.get();
+}
+
+uint64_t Memory::get_tracked_free_count(void) {
+	return tracked_free_count.get();
+}
+
+uint64_t Memory::get_tracked_allocated_bytes(void) {
+	return tracked_allocated_bytes.get();
+}
+
+uint64_t Memory::get_tracked_reallocated_bytes(void) {
+	return tracked_reallocated_bytes.get();
+}
+
+
 void *Memory::alloc_static(size_t p_bytes, bool p_pad_align) {
 #ifdef DEBUG_ENABLED
 	bool prepad = true;
@@ -108,6 +160,10 @@ void *Memory::alloc_static(size_t p_bytes, bool p_pad_align) {
 	ERR_FAIL_NULL_V(mem, nullptr);
 
 	alloc_count.increment();
+	if (is_tracking_memory.is_set()) {
+		tracked_alloc_count.increment();
+		tracked_allocated_bytes.add(p_bytes);
+	}
 
 	if (prepad) {
 		uint8_t *s8 = (uint8_t *)mem;
@@ -137,6 +193,16 @@ void *Memory::realloc_static(void *p_memory, size_t p_bytes, bool p_pad_align) {
 #else
 	bool prepad = p_pad_align;
 #endif
+
+	
+	if (is_tracking_memory.is_set()) {
+		if (p_bytes == 0) {
+			tracked_free_count.increment();
+		} else {
+			tracked_realloc_count.increment();
+			tracked_reallocated_bytes.add(p_bytes);
+		}
+	}
 
 	if (prepad) {
 		mem -= DATA_OFFSET;
@@ -187,6 +253,9 @@ void Memory::free_static(void *p_ptr, bool p_pad_align) {
 #endif
 
 	alloc_count.decrement();
+	if (is_tracking_memory.is_set()) {
+		tracked_free_count.increment();
+	}
 
 	if (prepad) {
 		mem -= DATA_OFFSET;
