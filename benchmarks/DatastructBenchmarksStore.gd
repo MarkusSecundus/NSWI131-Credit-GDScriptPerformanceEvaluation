@@ -1,4 +1,4 @@
-class_name DatastructBenchmarks
+class_name DatastructBenchmarksStore
 
 
 class ArrayIndexStore:
@@ -104,6 +104,7 @@ class DictionaryTypedIndexStore:
 		return Time.get_ticks_usec() - start_time
 
 
+class _Blank0: pass
 
 class ArrayTypedStringIndexStore:
 	extends IBenchmark
@@ -144,6 +145,7 @@ class ArrayPackedStringIndexStore:
 
 
 class _Blank1: pass
+class _Blank2: pass
 ######################################################
 
 

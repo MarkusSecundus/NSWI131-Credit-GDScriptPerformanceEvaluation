@@ -3,7 +3,7 @@ class_name BenchMain
 
 
 
-var BENCHMARK_PARENT : GDScript = DatastructBenchmarksLoad
+var BENCHMARK_PARENT : GDScript = DatastructBenchmarksStore
 
 
 static var WARMUP_REPETITIONS_COUNT = 10000
