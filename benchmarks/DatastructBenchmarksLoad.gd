@@ -149,7 +149,64 @@ class DictionaryTypedIndexLoad:
 			
 		return Time.get_ticks_usec() - start_time
 
+
+
+
+
+
+class _Blank0: pass
+
+
+class ArrayTypedStringIndexLoad:
+	extends IBenchmark
+	
+	var arr: Array[String] = []
+	
+	func _init() -> void:
+		arr.resize(500)
+		for i in 500: arr[i] = "abcdef"
+		
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var arr := self.arr
+		for repetition in repetitions:
+			var ret :String = ""
+			for i in 500:
+				ret = arr[i]
+			
+		return Time.get_ticks_usec() - start_time
+
+
+class ArrayPackedStringIndexLoad:
+	extends IBenchmark
+	
+	var arr: PackedStringArray = []
+	
+	func _init() -> void:
+		arr.resize(500)
+		for i in 500: arr[i] = "abcdef"
+		
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var arr := self.arr
+		for repetition in repetitions:
+			var ret :String = ""
+			for i in 500:
+				ret = arr[i]
+			
+		return Time.get_ticks_usec() - start_time
+
+
+
 class _Blank1: pass
+class _Blank2: pass
+
+
+
 
 static var _TEST_NAMES : PackedStringArray = [
 	"_00",

@@ -17,6 +17,7 @@ class ForeachRange:
 		return Time.get_ticks_usec() - start_time
 
 
+
 class ForeachArrayDyn:
 	extends IBenchmark
 	
@@ -186,6 +187,7 @@ class ForeachDictDyn:
 				
 		return Time.get_ticks_usec() - start_time
 
+class _Blank1:pass
 
 class ForeachRangeExplicit:
 	extends IBenchmark
@@ -236,6 +238,93 @@ class ForeachRangeConditioned:
 		return Time.get_ticks_usec() - start_time
 
 
+class ForeachRangeVar1:
+	extends IBenchmark
+	
+	func get_name()->String: return "ForeachRange"
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var LIMIT := 200
+		
+		for repetition in repetitions:
+			var acc : int = 0
+			for i in range(LIMIT):
+				acc += i
+				
+		return Time.get_ticks_usec() - start_time
+
+class ForeachRangeVar2:
+	extends IBenchmark
+	
+	func get_name()->String: return "ForeachRange"
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var LIMIT := 200
+		
+		for repetition in repetitions:
+			var acc : int = 0
+			for i in range(0, LIMIT):
+				acc += i
+				
+		return Time.get_ticks_usec() - start_time
+
+
+class ForeachRangeVar3:
+	extends IBenchmark
+	
+	func get_name()->String: return "ForeachRange"
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var INCREMENT := 1
+		
+		for repetition in repetitions:
+			var acc : int = 0
+			for i in range(0, 200, INCREMENT):
+				acc += i
+				
+		return Time.get_ticks_usec() - start_time
+
+class ForeachRangeConditionedArg:
+	extends IBenchmark
+	
+	func get_name()->String: return "ForeachRange"
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		var YES := true # `200 if true else 200` seems to get constant-folded to just 200
+		for repetition in repetitions:
+			var acc : int = 0
+			for i in range(0, 200 if YES else 200):
+				acc += i
+				
+		return Time.get_ticks_usec() - start_time
+		
+class ForeachRangeFuncDyn:
+	extends IBenchmark
+	
+	func get_name()->String: return "ForeachRangeB"
+	
+	func my_range(a:int, b: int): return range(a, b)
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var acc : int = 0
+			for i in my_range(0, 200):
+				acc += i
+				
+		return Time.get_ticks_usec() - start_time
+
+		
+class _Blank2: pass
+
 class ForeachRangeNumberConditioned:
 	extends IBenchmark
 	
@@ -263,23 +352,6 @@ class ForeachRange3:
 		for repetition in repetitions:
 			var acc : int = 0
 			for i in range(0, 200, 1):
-				acc += i
-				
-		return Time.get_ticks_usec() - start_time
-
-class ForeachRangeB:
-	extends IBenchmark
-	
-	func get_name()->String: return "ForeachRangeB"
-	
-	func my_range(a:int, b: int)->Array: return range(a, b)
-
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
-		var start_time := Time.get_ticks_usec()
-		
-		for repetition in repetitions:
-			var acc : int = 0
-			for i in my_range(0, 200):
 				acc += i
 				
 		return Time.get_ticks_usec() - start_time

@@ -3,29 +3,12 @@ class_name BenchMain
 
 
 
-var BENCHMARK_PARENT : GDScript = DatastructBenchmarksStore
+var BENCHMARK_PARENT : GDScript = DatastructBenchmarksCreation
 
 
 static var WARMUP_REPETITIONS_COUNT = 10000
 static var REPETITIONS_COUNT = 50000
 
-class Test:
-	extends IBenchmark
-	
-	func get_name()->String:
-		return "Test"
-
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
-		
-		var start_time := Time.get_ticks_usec()
-		for repetition in repetitions:
-			var a : Array = []
-			for i in 75:
-				a.append(i)
-				
-		return Time.get_ticks_usec() - start_time
-			
-var test_bench : Array[IBenchmark] = [Test.new()]
 
 
 func dump_disassemblies()->void:
@@ -47,11 +30,11 @@ func _ready() -> void:
 	var dummy_retval : Array = [null]
 	var constants_map := BENCHMARK_PARENT.get_script_constant_map()
 	for bench_name in constants_map:
-		var bench_raw = constants_map[bench_name].new()
-		if not (bench_raw is IBenchmark):
+		var bench_script : GDScript= constants_map[bench_name]
+		if bench_script.get_base_script() != IBenchmark:
 			print()
 			continue
-		var bench := bench_raw as IBenchmark
+		var bench := bench_script.new() as IBenchmark
 		bench.prepare(WARMUP_REPETITIONS_COUNT)
 		bench.run_benchmark(WARMUP_REPETITIONS_COUNT, dummy_retval)
 		bench.prepare(REPETITIONS_COUNT)
@@ -70,3 +53,6 @@ func _ready() -> void:
 		]))
 		
 	print("\n\nBENCHMARKS FINISHED")
+	
+	#await 4.0 # quit after 2 seconds
+	#get_tree().quit()

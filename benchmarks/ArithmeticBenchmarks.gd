@@ -1,5 +1,6 @@
 class_name ArithmeticBenchmarks
 
+
 class AddLiteral:
 	extends IBenchmark
 
@@ -60,9 +61,71 @@ class AddLiteral:
 			ret += 42
 			ret += 42
 			ret += 42 #49
-			acc += ret
 		
-		dummy_retval[0] = acc
+		return Time.get_ticks_usec() - start_time
+
+
+
+class AddMultipleLiterals:
+	extends IBenchmark
+
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var acc : int = 0
+		for repetition in repetitions:
+			
+			var ret :int = 0
+			ret += 21 + 9 + 7 + 5 * 1 #0
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1 #9
+			ret += 21 + 9 + 7 + 5 * 1 #10
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1 #19
+			ret += 21 + 9 + 7 + 5 * 1 #20
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1 #29
+			ret += 21 + 9 + 7 + 5 * 1 #30
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1 #39
+			ret += 21 + 9 + 7 + 5 * 1 #40
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1
+			ret += 21 + 9 + 7 + 5 * 1 #49
 		
 		return Time.get_ticks_usec() - start_time
 
@@ -144,13 +207,10 @@ class MultiplyLiteral:
 			ret *= 17
 			ret *= 17
 			ret *= 17 #49
-			acc *= ret
-		
-		dummy_retval[0] = acc
 		
 		return Time.get_ticks_usec() - start_time
 
-class DivideLiteral:
+class MultiplyFloatLiteral:
 	extends IBenchmark
 	
 	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
@@ -159,7 +219,133 @@ class DivideLiteral:
 		var acc : int = 0
 		for repetition in repetitions:
 			
-			var ret :int = 1
+			var ret :float = 1.0
+			ret *= 17.0 #0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0 #9
+			ret *= 17.0 #10
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0 #19
+			ret *= 17.0 #20
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0 #29
+			ret *= 17.0 #30
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0 #39
+			ret *= 17.0 #40
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0
+			ret *= 17.0 #49
+		
+		return Time.get_ticks_usec() - start_time
+
+class MultiplyFloatMultiLiteral:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var acc : int = 0
+		for repetition in repetitions:
+			
+			var ret :float = 1.0
+			ret *= (1.0/0.0588) #0
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588) #9
+			ret *= (1.0/0.0588) #10
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588) #19
+			ret *= (1.0/0.0588) #20
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588) #29
+			ret *= (1.0/0.0588) #30
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588) #39
+			ret *= (1.0/0.0588) #40
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588)
+			ret *= (1.0/0.0588) #49
+		
+		return Time.get_ticks_usec() - start_time
+
+class DivideFloatLiteral:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var acc : int = 0
+		for repetition in repetitions:
+			
+			var ret :float = 1.0
 			ret /= 0.05882 #0
 			ret /= 0.05882
 			ret /= 0.05882
@@ -210,9 +396,132 @@ class DivideLiteral:
 			ret /= 0.05882
 			ret /= 0.05882
 			ret /= 0.05882 #49
-			acc /= ret
 		
-		dummy_retval[0] = acc
+		return Time.get_ticks_usec() - start_time
+
+class DivideIntByFloatLiteral:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var acc : int = 0
+		for repetition in repetitions:
+			
+			var ret :int = 1.0
+			ret /= 0.05882 #0
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882 #9
+			ret /= 0.05882 #10
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882 #19
+			ret /= 0.05882 #20
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882 #29
+			ret /= 0.05882 #30
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882 #39
+			ret /= 0.05882 #40
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882
+			ret /= 0.05882 #49
+		
+		return Time.get_ticks_usec() - start_time
+
+class DivideLiteral:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var acc : int = 0
+		for repetition in repetitions:
+			
+			var ret :float = 9999999999
+			ret /= 7 #0
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7 #9
+			ret /= 7 #10
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7 #19
+			ret /= 7 #20
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7 #29
+			ret /= 7 #30
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7 #39
+			ret /= 7 #40
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7
+			ret /= 7 #49
 		
 		return Time.get_ticks_usec() - start_time
 
@@ -278,9 +587,6 @@ class AddStatic:
 			ret += C
 			ret += C
 			ret += C #49
-			acc += ret
-		
-		dummy_retval[0] = acc
 		
 		return Time.get_ticks_usec() - start_time
 
@@ -346,9 +652,7 @@ class AddInstance:
 			ret += C
 			ret += C
 			ret += C #49
-			acc += ret
-		
-		dummy_retval[0] = acc
+			
 		
 		return Time.get_ticks_usec() - start_time
 
@@ -416,9 +720,6 @@ class AddStaticProperty:
 			ret += C
 			ret += C
 			ret += C #49
-			acc += ret
-		
-		dummy_retval[0] = acc
 		
 		return Time.get_ticks_usec() - start_time
 
@@ -485,9 +786,6 @@ class AddInstanceProperty:
 			ret += C
 			ret += C
 			ret += C #49
-			acc += ret
-		
-		dummy_retval[0] = acc
 		
 		return Time.get_ticks_usec() - start_time
 
@@ -554,9 +852,6 @@ class AddStaticMethod:
 			ret += C()
 			ret += C()
 			ret += C() #49
-			acc += ret
-		
-		dummy_retval[0] = acc
 		
 		return Time.get_ticks_usec() - start_time
 
@@ -623,9 +918,6 @@ class AddInstanceMethod:
 			ret += C()
 			ret += C()
 			ret += C() #49
-			acc += ret
-		
-		dummy_retval[0] = acc
 		
 		return Time.get_ticks_usec() - start_time
 
@@ -693,9 +985,6 @@ class AddCallable:
 			ret += C.call()
 			ret += C.call()
 			ret += C.call() #49
-			acc += ret
-		
-		dummy_retval[0] = acc
 		
 		return Time.get_ticks_usec() - start_time
 
@@ -760,9 +1049,7 @@ class AddLocal:
 			ret += C
 			ret += C
 			ret += C #49
-			acc += ret
-		
-		dummy_retval[0] = acc
+			
 		return Time.get_ticks_usec() - start_time
 
 
@@ -1458,5 +1745,42 @@ class DoNothingBig:
 			pass
 			pass
 			pass #49
+		
+		return Time.get_ticks_usec() - start_time
+
+class _Blank3: pass
+class _Blank4: pass
+
+
+class FactorialLoop:
+	extends IBenchmark
+	
+	func _fact(n: int)->int:
+		var ret :int = n
+		for i in Vector2i(1, n):
+			ret *= i
+		return ret
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var acc : int = 0
+		for repetition in repetitions:
+			_fact(20)
+		
+		return Time.get_ticks_usec() - start_time
+
+class FactorialRecursive:
+	extends IBenchmark
+	
+	func _fact(n: int)->int:
+		return 1 if n <= 1 else n*_fact(n-1)
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var acc : int = 0
+		for repetition in repetitions:
+			_fact(20)
 		
 		return Time.get_ticks_usec() - start_time

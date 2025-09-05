@@ -128,3 +128,190 @@ class IntToFloatFunction:
 			acc += float(C) # 49
 				
 		return Time.get_ticks_usec() - start_time
+
+class StringToIntFunction:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var C : String = "2"
+		
+		for repetition in repetitions:
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C) # 9
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C) # 19
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C) # 29
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C) # 39
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C)
+			int(C) # 49
+				
+		return Time.get_ticks_usec() - start_time
+
+
+class IntToStringFunction:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var C : int = 2
+		
+		for repetition in repetitions:
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C) # 9
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C) # 19
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C) # 29
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C) # 39
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C)
+			str(C) # 49
+				
+		return Time.get_ticks_usec() - start_time
+
+class IntToStringFormat:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var C : int = 2
+		
+		for repetition in repetitions:
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C]) # 9
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C]) # 19
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C]) # 29
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C]) # 39
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C])
+			"{0}".format([C]) # 49
+				
+		return Time.get_ticks_usec() - start_time

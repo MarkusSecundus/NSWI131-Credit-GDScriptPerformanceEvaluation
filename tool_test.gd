@@ -14,7 +14,16 @@ func fff()->void:
 class Test:
 	var ooo : int = 44
 
+
+func _fact(n: int)->int:
+	var ret :int = n
+	for i in range(1, n):
+		ret *= i
+	return ret
+
 func run() -> void:
+	print(_fact(4))
+	return
 	var s : GDScript = null
 	var sss : GDScript = DatastructBenchmarksLoad
 	
