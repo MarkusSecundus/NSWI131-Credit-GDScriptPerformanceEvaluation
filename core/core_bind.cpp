@@ -659,6 +659,10 @@ uint64_t OS::get_tracked_allocated_bytes(void) {
 	return Memory::get_tracked_allocated_bytes();
 }
 
+uint64_t OS::get_tracked_freed_bytes(void) {
+	return Memory::get_tracked_freed_bytes();
+}
+
 uint64_t OS::get_tracked_reallocated_bytes(void) {
 	return Memory::get_tracked_reallocated_bytes();
 }
@@ -771,11 +775,15 @@ void OS::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("start_tracking_memory"), &OS::start_tracking_memory);
 	ClassDB::bind_method(D_METHOD("stop_tracking_memory"), &OS::stop_tracking_memory);
+
 	ClassDB::bind_method(D_METHOD("get_tracked_alloc_count"), &OS::get_tracked_alloc_count);
 	ClassDB::bind_method(D_METHOD("get_tracked_realloc_count"), &OS::get_tracked_realloc_count);
 	ClassDB::bind_method(D_METHOD("get_tracked_free_count"), &OS::get_tracked_free_count);
+
 	ClassDB::bind_method(D_METHOD("get_tracked_allocated_bytes"), &OS::get_tracked_allocated_bytes);
-	ClassDB::bind_method(D_METHOD("get_tracked_reallocated_bytes"), &OS::get_tracked_reallocated_bytes);
+	//ClassDB::bind_method(D_METHOD("get_tracked_reallocated_bytes"), &OS::get_tracked_reallocated_bytes);
+	ClassDB::bind_method(D_METHOD("get_tracked_freed_bytes"), &OS::get_tracked_freed_bytes);
+
 	ClassDB::bind_method(D_METHOD("vm_marker"), &OS::vm_marker);
 	ClassDB::bind_static_method("OS", D_METHOD("disassemble_function"), &disassemble_function);
 

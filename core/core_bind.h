@@ -229,6 +229,7 @@ public:
 	uint64_t get_tracked_realloc_count(void);
 	uint64_t get_tracked_free_count(void);
 	uint64_t get_tracked_allocated_bytes(void);
+	uint64_t get_tracked_freed_bytes(void);
 	uint64_t get_tracked_reallocated_bytes(void);
 
 

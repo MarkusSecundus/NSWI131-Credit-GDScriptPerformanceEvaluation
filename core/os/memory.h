@@ -67,6 +67,7 @@ public:
 	static uint64_t get_tracked_free_count(void);
 	static uint64_t get_tracked_allocated_bytes(void);
 	static uint64_t get_tracked_reallocated_bytes(void);
+	static uint64_t get_tracked_freed_bytes(void);
 
 
 	static void *alloc_static(size_t p_bytes, bool p_pad_align = false);
