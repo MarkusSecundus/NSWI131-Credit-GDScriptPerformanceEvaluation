@@ -232,6 +232,10 @@ public:
 	uint64_t get_tracked_freed_bytes(void);
 	uint64_t get_tracked_reallocated_bytes(void);
 
+	uint64_t instance_return42(void);
+	uint64_t instance_many_arguments_dyn(Variant, Variant, Variant, Variant, Variant, Variant, Variant, Variant, Variant, Variant, Variant, Variant);
+	uint64_t instance_many_arguments_typed(bool a, bool b, bool c, bool d, bool e, bool f, bool g, bool h, bool i, bool j, bool k, bool l);
+
 
 	String get_keycode_string(Key p_code) const;
 	bool is_keycode_unicode(char32_t p_unicode) const;

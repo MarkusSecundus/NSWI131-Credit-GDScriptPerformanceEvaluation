@@ -667,6 +667,33 @@ uint64_t OS::get_tracked_reallocated_bytes(void) {
 	return Memory::get_tracked_reallocated_bytes();
 }
 
+
+
+uint64_t OS::instance_return42(void) {
+	return 42;
+}
+
+static uint64_t static_return42(void) {
+	return 42;
+}
+
+static uint64_t static_many_arguments_dyn(Variant a, Variant b, Variant c, Variant d, Variant e, Variant f, Variant g, Variant h, Variant i, Variant j, Variant k, Variant l) {
+	return 42;
+}
+
+uint64_t OS::instance_many_arguments_dyn(Variant, Variant, Variant, Variant, Variant, Variant, Variant, Variant, Variant, Variant, Variant, Variant) {
+	return 42;
+}
+
+static uint64_t static_many_arguments_typed(bool a, bool b, bool c, bool d, bool e, bool f, bool g, bool h, bool i, bool j, bool k, bool l) {
+	return 42;
+}
+
+uint64_t OS::instance_many_arguments_typed(bool a, bool b, bool c, bool d, bool e, bool f, bool g, bool h, bool i, bool j, bool k, bool l) {
+	return 42;
+}
+
+
 OS *OS::singleton = nullptr;
 
 void OS::_bind_methods() {
@@ -786,6 +813,14 @@ void OS::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("vm_marker"), &OS::vm_marker);
 	ClassDB::bind_static_method("OS", D_METHOD("disassemble_function"), &disassemble_function);
+
+	ClassDB::bind_method(D_METHOD("instance_return42"), &OS::instance_return42);
+	ClassDB::bind_static_method("OS", D_METHOD("static_return42"), &static_return42);
+
+	ClassDB::bind_method(D_METHOD("instance_many_arguments_dyn"), &OS::instance_many_arguments_dyn);
+	ClassDB::bind_method(D_METHOD("instance_many_arguments_typed"), &OS::instance_many_arguments_typed);
+	ClassDB::bind_static_method("OS", D_METHOD("static_many_arguments_dyn"), &static_many_arguments_dyn);
+	ClassDB::bind_static_method("OS", D_METHOD("static_many_arguments_typed"), &static_many_arguments_typed);
 
 
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "low_processor_usage_mode"), "set_low_processor_usage_mode", "is_in_low_processor_usage_mode");
