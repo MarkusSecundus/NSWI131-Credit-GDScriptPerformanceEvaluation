@@ -5,6 +5,16 @@ class_name BenchMain
 
 var BENCHMARK_PARENT : GDScript = FunctioncallBenchmarks
 
+var BENCHMARK_PARENTS : Array[GDScript] = [
+	ArithmeticBenchmarks,
+	IterationBenchmarks,
+	FunctioncallBenchmarks,
+	DatastructBenchmarksLoad,
+	DatastructBenchmarksStore,
+	DatastructBenchmarksCreation,
+	ConversionBenchmarks,
+]
+
 
 static var WARMUP_REPETITIONS_COUNT = 10000
 static var REPETITIONS_COUNT = 50000
@@ -25,14 +35,30 @@ func dump_disassemblies()->void:
 
 
 func _ready() -> void:
+	#do_benchmark(BENCHMARK_PARENT) ; return
+	
+	for i in 20:
+		print("|| RUN %d...\n"%i)
+		for bench_registry in BENCHMARK_PARENTS:
+			print("%s...\n"%bench_registry.get_global_name())
+			do_benchmark(bench_registry, false)
+			print("\n\n#################################################################################################################################\n")
+	
+	await null
+	await 2
+	get_tree().quit()
+	
+	
+func do_benchmark(bench_registry: GDScript, is_human_readable:bool = true) -> void:
 	#OS.disassemble_function(ArithmeticBenchmarks.DoNothingIndexDict.new().run_benchmark); return
 	#dump_disassemblies(); return
 	
-	var constants_map := BENCHMARK_PARENT.get_script_constant_map()
+	var constants_map := bench_registry.get_script_constant_map()
 	for bench_name in constants_map:
 		var bench_script : GDScript= constants_map[bench_name]
 		if bench_script.get_base_script() != IBenchmark:
-			print()
+			if is_human_readable:
+				print()
 			continue
 		var bench := bench_script.new() as IBenchmark
 		var params := bench.get_params()
@@ -51,22 +77,27 @@ func _ready() -> void:
 			var free_count := OS.get_tracked_free_count()
 			var freed_bytes := OS.get_tracked_freed_bytes()
 			
-			var time_per_repetition : float = float(measured_time)/REPETITIONS_COUNT
-			var qualified_bench_name :String= bench_name if param == null else (bench_name + "[ " + str(param[0] if (param is Array) else param) + " ]")
-			var timing_info := "%.8f ms per iteration (%9.4f ms total)" % [time_per_repetition*0.001, measured_time*0.001]
-			var mem_info := ""
-			if (allocations_count != free_count) || (allocated_bytes != freed_bytes):
-				mem_info += " (allocs: %9d - %9d B) (frees: %9d - %9d B" % ([allocations_count, allocated_bytes, free_count, freed_bytes])
-			elif allocations_count > 0 || free_count > 0 || allocated_bytes > 0 || freed_bytes > 0:
-				mem_info += " (alloc+free: %9d - %10d B)" % ([allocations_count, allocated_bytes])
-			if reallocations_count > 0:
-				mem_info = Utils.right_pad_to_size(mem_info, 40) + " (reallocs: {0})".format([reallocations_count])
+			var qualified_bench_name :String= bench_name if param == null else (bench_name + " [ " + str(param[0] if (param is Array) else param) + " ]")
 			
-			print("{0} | {1} |{2}".format([
-				Utils.right_pad_to_size(qualified_bench_name, 40), Utils.right_pad_to_size(timing_info, 50), mem_info
-			]))
-		
-	print("\n\nBENCHMARKS FINISHED")
+			if is_human_readable:
+				var time_per_repetition : float = float(measured_time)/REPETITIONS_COUNT
+				var timing_info := "%.8f ms per iteration (%9.4f ms total)" % [time_per_repetition*0.001, measured_time*0.001]
+				var mem_info := ""
+				if (allocations_count != free_count) || (allocated_bytes != freed_bytes):
+					mem_info += " (allocs: %9d - %9d B) (frees: %9d - %9d B" % ([allocations_count, allocated_bytes, free_count, freed_bytes])
+				elif allocations_count > 0 || free_count > 0 || allocated_bytes > 0 || freed_bytes > 0:
+					mem_info += " (alloc+free: %9d - %10d B)" % ([allocations_count, allocated_bytes])
+				if reallocations_count > 0:
+					mem_info = Utils.right_pad_to_size(mem_info, 40) + " (reallocs: {0})".format([reallocations_count])
+				
+				print("{0} | {1} |{2}".format([
+					Utils.right_pad_to_size(qualified_bench_name, 40), Utils.right_pad_to_size(timing_info, 50), mem_info
+				]))
+			else:
+				print("%s;%d;%d;%d;%s;%d;%d;%d;"%([qualified_bench_name, measured_time, REPETITIONS_COUNT, allocations_count, allocated_bytes, free_count, freed_bytes, reallocations_count]))
+				
+	if is_human_readable:	
+		print("\n\nBENCHMARKS FINISHED")
 	
 	#await 4.0 # quit after 2 seconds
 	#get_tree().quit()
