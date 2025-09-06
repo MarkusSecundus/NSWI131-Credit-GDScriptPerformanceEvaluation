@@ -8,7 +8,7 @@ class ArrayIndexStore:
 	func _init():
 		arr.resize(500)
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -25,7 +25,7 @@ class ArrayTypedIndexStore:
 	func _init():
 		arr.resize(500)
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -42,7 +42,7 @@ class ArrayPacked64IndexStore:
 	func _init():
 		arr.resize(500)
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -59,7 +59,7 @@ class ArrayPacked32IndexStore:
 	func _init():
 		arr.resize(500)
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -76,7 +76,7 @@ class DictionaryIndexStore:
 	func _init():
 		for i in 500: arr[i] = 0
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -93,7 +93,7 @@ class DictionaryTypedIndexStore:
 	func _init():
 		for i in 500: arr[i] = 0
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -113,7 +113,7 @@ class ArrayTypedStringIndexStore:
 	func _init():
 		arr.resize(500)
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -131,7 +131,7 @@ class ArrayPackedStringIndexStore:
 	func _init():
 		arr.resize(500)
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -161,7 +161,7 @@ class DictionaryDynNamedStoreMember:
 		for n in DatastructBenchmarksLoad._TEST_NAMES:
 			dict[n] = 2
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -228,7 +228,7 @@ class DictionaryNamedStoreMember:
 		for n in DatastructBenchmarksLoad._TEST_NAMES:
 			dict[n] = 2
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -295,7 +295,7 @@ class DictionaryTypedNamedStoreMember:
 		for n in DatastructBenchmarksLoad._TEST_NAMES:
 			dict[n] = 2
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -365,7 +365,7 @@ class DictionaryNamedStoreIndexer:
 		for n in DatastructBenchmarksLoad._TEST_NAMES:
 			dict[n] = 2
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -433,7 +433,7 @@ class DictionaryTypedNamedStoreIndexer:
 		for n in DatastructBenchmarksLoad._TEST_NAMES:
 			dict[n] = 2
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -501,7 +501,7 @@ class DictionarySetNamedStore:
 		for n in DatastructBenchmarksLoad._TEST_NAMES:
 			dict[n] = 2
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -568,7 +568,7 @@ class DictionarySetDynNamedStore:
 		for n in DatastructBenchmarksLoad._TEST_NAMES:
 			dict[n] = 2
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -685,7 +685,7 @@ class ObjectTypedNamedStoreMember:
 	
 	var dict := _TestDatastruct.new()
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -748,7 +748,7 @@ class ObjectDynNamedStoreMember:
 	
 	var dict := _TestDatastruct.new()
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -812,7 +812,7 @@ class ObjectDynNamedStoreIndexer:
 	
 	var dict := _TestDatastruct.new()
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -876,7 +876,7 @@ class ObjectTypedNamedStoreIndexer:
 	
 	var dict := _TestDatastruct.new()
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -943,7 +943,7 @@ class ObjectSetNamedStore:
 	
 	var dict := _TestDatastruct.new()
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -1006,7 +1006,7 @@ class ObjectSetDynNamedStore:
 	
 	var dict := _TestDatastruct.new()
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:

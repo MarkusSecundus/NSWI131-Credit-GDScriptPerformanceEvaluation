@@ -6,7 +6,7 @@ class ForeachRange:
 	
 	func get_name()->String: return "ForeachRange"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -25,7 +25,7 @@ class ForeachArrayDyn:
 
 	var numbers :Variant= range(0, 200)
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var numbers :Variant = self.numbers
@@ -43,7 +43,7 @@ class ForeachArray:
 
 	var numbers := range(0, 200)
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var numbers := self.numbers
@@ -65,7 +65,7 @@ class ForeachArrayTyped:
 		numbers.resize(200)
 		for i in 200: numbers[i] = i
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var numbers := self.numbers
@@ -87,7 +87,7 @@ class ForeachArrayPacked64:
 		numbers.resize(200)
 		for i in 200: numbers[i] = i
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var numbers := self.numbers
@@ -110,7 +110,7 @@ class ForeachArrayPacked32:
 		numbers.resize(200)
 		for i in 200: numbers[i] = i
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var numbers := self.numbers
@@ -132,7 +132,7 @@ class ForeachDictTyped:
 		numbers = {}
 		for i in 200: numbers[i] = i
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var numbers := self.numbers
@@ -154,7 +154,7 @@ class ForeachDict:
 		numbers = {}
 		for i in 200: numbers[i] = i
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var numbers := self.numbers
@@ -176,7 +176,7 @@ class ForeachDictDyn:
 		numbers = {}
 		for i in 200: numbers[i] = i
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var numbers :Variant = self.numbers
@@ -194,7 +194,7 @@ class ForeachRangeExplicit:
 	
 	func get_name()->String: return "ForeachRangeExplicit"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -211,7 +211,7 @@ class ForeachRangeExplicitDyn:
 	
 	func get_name()->String: return "ForeachRangeExplicitDyn"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -227,7 +227,7 @@ class ForeachRangeConditioned:
 	
 	func get_name()->String: return "ForeachRangeConditioned"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -243,7 +243,7 @@ class ForeachRangeVar1:
 	
 	func get_name()->String: return "ForeachRange"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var LIMIT := 200
@@ -260,7 +260,7 @@ class ForeachRangeVar2:
 	
 	func get_name()->String: return "ForeachRange"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var LIMIT := 200
@@ -278,7 +278,7 @@ class ForeachRangeVar3:
 	
 	func get_name()->String: return "ForeachRange"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var INCREMENT := 1
@@ -295,7 +295,7 @@ class ForeachRangeConditionedArg:
 	
 	func get_name()->String: return "ForeachRange"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		var YES := true # `200 if true else 200` seems to get constant-folded to just 200
 		for repetition in repetitions:
@@ -312,7 +312,7 @@ class ForeachRangeFuncDyn:
 	
 	func my_range(a:int, b: int): return range(a, b)
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -330,7 +330,7 @@ class ForeachRangeNumberConditioned:
 	
 	func get_name()->String: return "ForeachRangeNumberConditioned"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -346,7 +346,7 @@ class ForeachRange3:
 	
 	func get_name()->String: return "ForeachRange3"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -362,7 +362,7 @@ class ForeachNumber:
 	
 	func get_name()->String: return "ForeachNumber"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -377,7 +377,7 @@ class ForeachNumberExplicit:
 	
 	func get_name()->String: return "ForeachNumberExplicit"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -393,7 +393,7 @@ class ForeachNumberExplicitDyn:
 	
 	func get_name()->String: return "ForeachNumberExplicitDyn"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -410,7 +410,7 @@ class ForeachVector2i:
 	
 	func get_name()->String: return "ForeachVector2i"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -426,7 +426,7 @@ class ForeachManual:
 	
 	func get_name()->String: return "ForeachManual"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		
@@ -445,7 +445,7 @@ class ForeachFloatManual:
 	
 	func get_name()->String: return "ForeachFloatManual"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		
@@ -464,7 +464,7 @@ class ForeachFloatNumber:
 	
 	func get_name()->String: return "ForeachFloatNumber"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -479,7 +479,7 @@ class ForeachFloatNumberExplicit:
 	
 	func get_name()->String: return "ForeachFloatNumberExplicit"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -495,7 +495,7 @@ class ForeachFloatNumberDyn:
 	
 	func get_name()->String: return "ForeachFloatNumberDyn"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -512,7 +512,7 @@ class ForeachFloatVector2f:
 	
 	func get_name()->String: return "ForeachFloatVector2f"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -527,7 +527,7 @@ class ForeachFloatRange:
 	
 	func get_name()->String: return "ForeachFloatRange"
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:

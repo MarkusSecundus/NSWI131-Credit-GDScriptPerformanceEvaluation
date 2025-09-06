@@ -15,14 +15,9 @@ class Test:
 	var ooo : int = 44
 
 
-func _fact(n: int)->int:
-	var ret :int = n
-	for i in range(1, n):
-		ret *= i
-	return ret
-
 func run() -> void:
-	print(_fact(4))
+	var arrr :Array[float] = [3.32]
+	print("num: {0}".format([int(-3.433)]))
 	return
 	var s : GDScript = null
 	var sss : GDScript = DatastructBenchmarksLoad

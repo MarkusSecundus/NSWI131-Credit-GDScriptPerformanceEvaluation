@@ -4,7 +4,7 @@ class_name DatastructBenchmarksCreation
 class ArrayAppend:
 	extends IBenchmark
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -17,7 +17,7 @@ class ArrayAppend:
 class ArrayTypedAppend:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -31,7 +31,7 @@ class ArrayPacked64Append:
 	extends IBenchmark
 
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -45,7 +45,7 @@ class ArrayPacked32Append:
 	extends IBenchmark
 	
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -60,7 +60,7 @@ class ArrayTypedStringAppend:
 	extends IBenchmark
 	
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -74,7 +74,7 @@ class ArrayPackedStringAppend:
 	extends IBenchmark
 	
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -93,7 +93,7 @@ class _Blank3: pass
 class ArrayRange:
 	extends IBenchmark
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -106,7 +106,7 @@ class ArrayRange:
 class ArrayResize:
 	extends IBenchmark
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -120,7 +120,7 @@ class ArrayResize:
 class ArrayTypedResize:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -134,7 +134,7 @@ class ArrayTypedResize:
 class ArrayPacked64Resize:
 	extends IBenchmark
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -148,7 +148,7 @@ class ArrayPacked64Resize:
 class ArrayPacked32Resize:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -163,7 +163,7 @@ class ArrayPacked32Resize:
 class ArrayTypedStringResize:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -178,7 +178,7 @@ class ArrayTypedStringResize:
 class ArrayPackedStringResize:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -203,7 +203,7 @@ class _Blank4: pass
 class DictionaryIndexAdd:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -218,7 +218,7 @@ class DictionaryIndexAdd:
 class DictionaryTypedIndexAdd:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -243,7 +243,7 @@ class DictionaryDynNamedStoreMember:
 	extends IBenchmark
 	
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -306,7 +306,7 @@ class DictionaryNamedStoreMember:
 	extends IBenchmark
 	
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -367,7 +367,7 @@ class DictionaryNamedStoreMember:
 class DictionaryTypedNamedStoreMember:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -432,7 +432,7 @@ class DictionaryNamedStoreIndexer:
 	extends IBenchmark
 	 
 	 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -494,7 +494,7 @@ class DictionaryNamedStoreIndexer:
 class DictionaryTypedNamedStoreIndexer:
 	extends IBenchmark
 	 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -556,7 +556,7 @@ class DictionaryTypedNamedStoreIndexer:
 class DictionarySetNamedStore:
 	extends IBenchmark
 	 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -618,7 +618,7 @@ class DictionarySetDynNamedStore:
 	extends IBenchmark
 	 
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -734,7 +734,7 @@ class ObjectTypedNamedStoreMember:
 	extends IBenchmark
 	
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -796,7 +796,7 @@ class ObjectDynNamedStoreMember:
 	extends IBenchmark
 	
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -859,7 +859,7 @@ class ObjectDynNamedStoreIndexer:
 	extends IBenchmark
 	
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -923,7 +923,7 @@ class ObjectTypedNamedStoreIndexer:
 	extends IBenchmark
 	
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -989,7 +989,7 @@ class ObjectSetNamedStore:
 	extends IBenchmark
 	
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -1051,7 +1051,7 @@ class ObjectSetDynNamedStore:
 	extends IBenchmark
 	
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -1129,7 +1129,7 @@ class _TestDatastructSmall_Explicit:
 class ArraySmall:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -1140,7 +1140,7 @@ class ArraySmall:
 class ArrayTypedSmall:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -1151,7 +1151,7 @@ class ArrayTypedSmall:
 class ArrayPackedSmall:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -1162,7 +1162,7 @@ class ArrayPackedSmall:
 class DictionarySmall:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -1173,7 +1173,7 @@ class DictionarySmall:
 class DictionaryTypedSmall:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -1184,7 +1184,7 @@ class DictionaryTypedSmall:
 class ObjectSmallImplicit:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -1195,7 +1195,7 @@ class ObjectSmallImplicit:
 class ObjectSmallExplicit:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -1209,7 +1209,7 @@ class _Blank7: pass
 class StringConcat:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -1221,7 +1221,7 @@ class StringConcat:
 class StringConcat2:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
@@ -1234,7 +1234,7 @@ class StringConcat2:
 class StringConcatTiny:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:

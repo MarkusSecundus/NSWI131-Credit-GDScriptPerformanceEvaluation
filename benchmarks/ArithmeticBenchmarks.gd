@@ -4,10 +4,9 @@ class_name ArithmeticBenchmarks
 class AddLiteral:
 	extends IBenchmark
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :int = 0
@@ -69,10 +68,9 @@ class AddLiteral:
 class AddMultipleLiterals:
 	extends IBenchmark
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :int = 0
@@ -132,28 +130,23 @@ class AddMultipleLiterals:
 class AddLiteralSingleline:
 	extends IBenchmark
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :int = 0
 			ret += 42 ; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42 ; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42; ret += 42
 			
-			acc += ret
-		
-		dummy_retval[0] = acc
 		
 		return Time.get_ticks_usec() - start_time
 
 class MultiplyLiteral:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :int = 1
@@ -213,10 +206,9 @@ class MultiplyLiteral:
 class MultiplyFloatLiteral:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :float = 1.0
@@ -276,10 +268,9 @@ class MultiplyFloatLiteral:
 class MultiplyFloatMultiLiteral:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :float = 1.0
@@ -339,10 +330,9 @@ class MultiplyFloatMultiLiteral:
 class DivideFloatLiteral:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :float = 1.0
@@ -402,10 +392,9 @@ class DivideFloatLiteral:
 class DivideIntByFloatLiteral:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :int = 1.0
@@ -465,10 +454,9 @@ class DivideIntByFloatLiteral:
 class DivideLiteral:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :float = 9999999999
@@ -530,10 +518,9 @@ class AddStatic:
 	
 	static var C : int = 42
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :int = 0
@@ -595,10 +582,9 @@ class AddInstance:
 	
 	var C : int = 42
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :int = 0
@@ -663,10 +649,9 @@ class AddStaticProperty:
 	static var C : int:
 		get: return 42
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :int = 0
@@ -729,10 +714,9 @@ class AddInstanceProperty:
 	var C : int:
 		get: return 42
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :int = 0
@@ -795,10 +779,9 @@ class AddStaticMethod:
 	static func C()->int:
 		return 42
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :int = 0
@@ -861,10 +844,9 @@ class AddInstanceMethod:
 	func C()->int:
 		return 42
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			
 			var ret :int = 0
@@ -927,13 +909,11 @@ class AddCallable:
 	static func C_impl()->int:
 		return 42
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var C: Callable = C_impl
-		var acc : int = 0
 		for repetition in repetitions:
-			
 			var ret :int = 0
 			ret += C.call() #0
 			ret += C.call()
@@ -991,14 +971,76 @@ class AddCallable:
 class AddLocal:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
 		var C : int = 42
-		var acc : int = 0
 		for repetition in repetitions:
-			
 			var ret :int = 0
+			ret += C #0
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #9
+			ret += C #10
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #19
+			ret += C #20
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #29
+			ret += C #30
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #39
+			ret += C #40
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #49
+			
+		return Time.get_ticks_usec() - start_time
+
+class _Blank7: pass
+
+class AddLocal_Vector2i:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var C := Vector2i(42, 43)
+		for repetition in repetitions:
+			var ret := Vector2i(0, 0)
 			ret += C #0
 			ret += C
 			ret += C
@@ -1054,6 +1096,704 @@ class AddLocal:
 
 
 
+class AddLocal_Vector2f:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var C := Vector2(42, 43)
+		for repetition in repetitions:
+			var ret := Vector2(0, 0)
+			ret += C #0
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #9
+			ret += C #10
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #19
+			ret += C #20
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #29
+			ret += C #30
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #39
+			ret += C #40
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #49
+			
+		return Time.get_ticks_usec() - start_time
+
+
+class AddLocal_Vector3i:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var C := Vector3i(42, 43, 44)
+		for repetition in repetitions:
+			var ret := Vector3i(0, 0, 0)
+			ret += C #0
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #9
+			ret += C #10
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #19
+			ret += C #20
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #29
+			ret += C #30
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #39
+			ret += C #40
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #49
+			
+		return Time.get_ticks_usec() - start_time
+
+class AddLocal_Vector3f:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var C := Vector3(42, 43, 44)
+		for repetition in repetitions:
+			var ret := Vector3(0, 0, 0)
+			ret += C #0
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #9
+			ret += C #10
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #19
+			ret += C #20
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #29
+			ret += C #30
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #39
+			ret += C #40
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C
+			ret += C #49
+			
+		return Time.get_ticks_usec() - start_time
+
+
+
+class MultiplyLocal_Vector4f:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		var C :float = 1.4215
+		for repetition in repetitions:
+			var ret := Vector4(42, 43, 44, 45)
+			ret *= C #0
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C #9
+			ret *= C #10
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C #19
+			ret *= C #20
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C #29
+			ret *= C #30
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C #39
+			ret *= C #40
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C
+			ret *= C #49
+			
+		return Time.get_ticks_usec() - start_time
+
+
+
+class SqrtLocal:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var ret :float = 3.1415
+			ret = sqrt(ret) #0
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret) #9
+			ret = sqrt(ret) #10
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret) #19
+			ret = sqrt(ret) #20
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret) #29
+			ret = sqrt(ret) #30
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret) #39
+			ret = sqrt(ret) #40
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret)
+			ret = sqrt(ret) #49
+			
+		return Time.get_ticks_usec() - start_time
+
+
+class PowLocal:
+	extends IBenchmark
+	
+	func get_params()->Array:
+		return [0.0001, 0.5, 2.0, 2.71828, PI, sqrt(2.0), 9999.9999, INF, NAN]
+	
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		
+		var e :float= _param
+		
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var ret :float = 3.1415
+			ret = pow(ret, e) #0
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e) #9
+			ret = pow(ret, e) #10
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e) #19
+			ret = pow(ret, e) #20
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e) #29
+			ret = pow(ret, e) #30
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e) #39
+			ret = pow(ret, e) #40
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e)
+			ret = pow(ret, e) #49
+			
+		return Time.get_ticks_usec() - start_time
+
+
+class SinLocal:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var ret :float = 1.456233
+			ret = sin(ret) #0
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret) #9
+			ret = sin(ret) #10
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret) #19
+			ret = sin(ret) #20
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret) #29
+			ret = sin(ret) #30
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret) #39
+			ret = sin(ret) #40
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret)
+			ret = sin(ret) #49
+			
+		return Time.get_ticks_usec() - start_time
+
+
+
+class TanLocal:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var ret :float = 1.456233
+			ret = tan(ret) #0
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret) #9
+			ret = tan(ret) #10
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret) #19
+			ret = tan(ret) #20
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret) #29
+			ret = tan(ret) #30
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret) #39
+			ret = tan(ret) #40
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret)
+			ret = tan(ret) #49
+			
+		return Time.get_ticks_usec() - start_time
+
+
+class ATanLocal:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var ret :float = 1.456233
+			ret = atan(ret) #0
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret) #9
+			ret = atan(ret) #10
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret) #19
+			ret = atan(ret) #20
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret) #29
+			ret = atan(ret) #30
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret) #39
+			ret = atan(ret) #40
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret)
+			ret = atan(ret) #49
+			
+		return Time.get_ticks_usec() - start_time
+
+
+class ATan2Local:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var ret :float = 1.456233
+			ret = atan2(ret, ret) #0
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret) #9
+			ret = atan2(ret, ret) #10
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret) #19
+			ret = atan2(ret, ret) #20
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret) #29
+			ret = atan2(ret, ret) #30
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret) #39
+			ret = atan2(ret, ret) #40
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret)
+			ret = atan2(ret, ret) #49
+			
+		return Time.get_ticks_usec() - start_time
+
+
+class FmodLocal:
+	extends IBenchmark
+	
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			var ret :float = 1.456233
+			ret = fmod(ret, 0.17) #0
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17) #9
+			ret = fmod(ret, 0.17) #10
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17) #19
+			ret = fmod(ret, 0.17) #20
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17) #29
+			ret = fmod(ret, 0.17) #30
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17) #39
+			ret = fmod(ret, 0.17) #40
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17)
+			ret = fmod(ret, 0.17) #49
+			
+		return Time.get_ticks_usec() - start_time
+
+
 
 
 
@@ -1071,12 +1811,10 @@ class _Blank2: pass
 class DoNothing:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
-			
 			pass #0
 			pass
 			pass
@@ -1133,12 +1871,10 @@ class DoNothing:
 class DoNothingLiteralString:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
-			
 			"abcd123456789_abcd123456789_abcd123456789" #0
 			"abcd123456789_abcd123456789_abcd123456789"
 			"abcd123456789_abcd123456789_abcd123456789"
@@ -1195,12 +1931,10 @@ class DoNothingLiteralString:
 class DoNothingLiteralStringSums:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
-			
 			"abcd123456789" + "_abcd123456789" + "_abcd123456789"#0
 			"abcd123456789" + "_abcd123456789" + "_abcd123456789"
 			"abcd123456789" + "_abcd123456789" + "_abcd123456789"
@@ -1257,12 +1991,10 @@ class DoNothingLiteralStringSums:
 class DoNothingLiteralIntSums:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
-			
 			1 + 1 + 1 + 1 + 1 #0
 			1 + 1 + 1 + 1 + 1
 			1 + 1 + 1 + 1 + 1
@@ -1322,12 +2054,10 @@ class DoNothingProperty:
 	var p: int:
 		get: return 1
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
-			
 			p #0
 			p
 			p
@@ -1384,15 +2114,13 @@ class DoNothingProperty:
 class DoNothingIndexArray:
 	extends IBenchmark
 	
-	var p: int:
-		get: return 1
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	var arr : PackedInt32Array = [1]
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var arr : PackedInt32Array = [1]
+		var arr:= self.arr
 		for repetition in repetitions:
-			
 			arr[0] #0
 			arr[0]
 			arr[0]
@@ -1449,15 +2177,13 @@ class DoNothingIndexArray:
 class DoNothingIndexDict:
 	extends IBenchmark
 	
-	var p: int:
-		get: return 1
+	var arr : Dictionary = {0: 1}
 
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var arr : Dictionary = {0: 1}
+		var arr := self.arr
 		for repetition in repetitions:
-			
 			arr[0] #0
 			arr[0]
 			arr[0]
@@ -1514,10 +2240,9 @@ class DoNothingIndexDict:
 class DoNothingAssign:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			var temp : int = 0
 			temp = 1 #0
@@ -1576,10 +2301,9 @@ class DoNothingAssign:
 class DoNothingAssignDyn:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			var temp : Variant = 0
 			temp = 1 #0
@@ -1638,12 +2362,10 @@ class DoNothingAssignDyn:
 class DoNothingBig:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
-			
 			pass #0
 			pass
 			pass
@@ -1761,10 +2483,9 @@ class FactorialLoop:
 			ret *= i
 		return ret
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
 		
-		var acc : int = 0
 		for repetition in repetitions:
 			_fact(20)
 		
@@ -1776,10 +2497,9 @@ class FactorialRecursive:
 	func _fact(n: int)->int:
 		return 1 if n <= 1 else n*_fact(n-1)
 	
-	func run_benchmark(repetitions: int, dummy_retval : Array)->int:
+	func run_benchmark(repetitions: int, _param: Variant)->int:
 		var start_time := Time.get_ticks_usec()
-		
-		var acc : int = 0
+	
 		for repetition in repetitions:
 			_fact(20)
 		
