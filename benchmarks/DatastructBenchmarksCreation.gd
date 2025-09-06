@@ -1206,7 +1206,7 @@ class ObjectSmallExplicit:
 
 class _Blank7: pass
 
-class StringConcat:
+class StringConcat_200:
 	extends IBenchmark
 	
 	func run_benchmark(repetitions: int, _param: Variant)->int:
@@ -1218,7 +1218,7 @@ class StringConcat:
 			
 		return Time.get_ticks_usec() - start_time
 
-class StringConcat2:
+class StringConcat_200B:
 	extends IBenchmark
 	
 	func run_benchmark(repetitions: int, _param: Variant)->int:
@@ -1231,14 +1231,19 @@ class StringConcat2:
 		return Time.get_ticks_usec() - start_time
 
 
-class StringConcatTiny:
+class StringConcat:
 	extends IBenchmark
 	
-	func run_benchmark(repetitions: int, _param: Variant)->int:
+	func get_params()->Array:
+		return [1, 5, 10, 20, 40, 80, 160, 200, 400, 800]
+	
+	func run_benchmark(repetitions: int, param: Variant)->int:
+		var length : int = param
+		
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
 			var s := ""
-			for i in 10: s += "a"
+			for i in length: s += "a"
 			
 		return Time.get_ticks_usec() - start_time

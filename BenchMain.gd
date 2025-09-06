@@ -35,21 +35,27 @@ func dump_disassemblies()->void:
 
 
 func _ready() -> void:
-	#do_benchmark(BENCHMARK_PARENT) ; return
+	do_benchmark(DatastructBenchmarksCreation) ; return
 	
-	for i in 20:
+	var output:= FileAccess.open("C:/Users/MarkusSecundus/Documents/PRG/bin/out.csv", FileAccess.WRITE)
+	
+	for i in 10:
 		print("|| RUN %d...\n"%i)
 		for bench_registry in BENCHMARK_PARENTS:
 			print("%s...\n"%bench_registry.get_global_name())
-			do_benchmark(bench_registry, false)
+			do_benchmark(bench_registry, output)
 			print("\n\n#################################################################################################################################\n")
+			output.flush()
+			await null
+	
+	output.close()
 	
 	await null
-	await 2
+	await 10
 	get_tree().quit()
 	
 	
-func do_benchmark(bench_registry: GDScript, is_human_readable:bool = true) -> void:
+func do_benchmark(bench_registry: GDScript, output:FileAccess=null) -> void:
 	#OS.disassemble_function(ArithmeticBenchmarks.DoNothingIndexDict.new().run_benchmark); return
 	#dump_disassemblies(); return
 	
@@ -57,8 +63,7 @@ func do_benchmark(bench_registry: GDScript, is_human_readable:bool = true) -> vo
 	for bench_name in constants_map:
 		var bench_script : GDScript= constants_map[bench_name]
 		if bench_script.get_base_script() != IBenchmark:
-			if is_human_readable:
-				print()
+			print()
 			continue
 		var bench := bench_script.new() as IBenchmark
 		var params := bench.get_params()
@@ -77,10 +82,11 @@ func do_benchmark(bench_registry: GDScript, is_human_readable:bool = true) -> vo
 			var free_count := OS.get_tracked_free_count()
 			var freed_bytes := OS.get_tracked_freed_bytes()
 			
-			var qualified_bench_name :String= bench_name if param == null else (bench_name + " [ " + str(param[0] if (param is Array) else param) + " ]")
+			var param_repr :String = "" if (param == null) else (str(param[0] if (param is Array) else param))
 			
-			if is_human_readable:
+			if 1:
 				var time_per_repetition : float = float(measured_time)/REPETITIONS_COUNT
+				var qualified_bench_name :String= bench_name if param == null else (bench_name + " [ " + param_repr + " ]")
 				var timing_info := "%.8f ms per iteration (%9.4f ms total)" % [time_per_repetition*0.001, measured_time*0.001]
 				var mem_info := ""
 				if (allocations_count != free_count) || (allocated_bytes != freed_bytes):
@@ -93,11 +99,10 @@ func do_benchmark(bench_registry: GDScript, is_human_readable:bool = true) -> vo
 				print("{0} | {1} |{2}".format([
 					Utils.right_pad_to_size(qualified_bench_name, 40), Utils.right_pad_to_size(timing_info, 50), mem_info
 				]))
-			else:
-				print("%s;%d;%d;%d;%s;%d;%d;%d;"%([qualified_bench_name, measured_time, REPETITIONS_COUNT, allocations_count, allocated_bytes, free_count, freed_bytes, reallocations_count]))
+			if output != null:
+				output.store_line("%s;%s;%d;%d;%d;%s;%d;%d;%d;"%([bench_name, param_repr, measured_time, REPETITIONS_COUNT, allocations_count, allocated_bytes, free_count, freed_bytes, reallocations_count]))
 				
-	if is_human_readable:	
-		print("\n\nBENCHMARKS FINISHED")
+	print("\n\nBENCHMARKS FINISHED")
 	
 	#await 4.0 # quit after 2 seconds
 	#get_tree().quit()
