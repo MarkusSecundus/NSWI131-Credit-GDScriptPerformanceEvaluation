@@ -44,12 +44,13 @@ func _ready() -> void:
 		var allocations_count := OS.get_tracked_alloc_count()
 		var allocated_bytes := OS.get_tracked_allocated_bytes()
 		var reallocations_count := OS.get_tracked_realloc_count()
-		var reallocated_bytes := OS.get_tracked_reallocated_bytes()
 		var free_count := OS.get_tracked_free_count()
+		var freed_bytes := OS.get_tracked_freed_bytes()
+		
 		var time_per_repetition : float = float(measured_time)/REPETITIONS_COUNT
-		print("{0} | {1} ms per iteration ({2} ms total) | (allocs: {3} - {4} B) (reallocs: {5} - {6} B), (frees: {7})".format([
-			bench_name, time_per_repetition*0.001, measured_time*0.001,
-			allocations_count, allocated_bytes, reallocations_count, reallocated_bytes, free_count
+		print("{0} | {1} ms per iteration ({2} ms total) | (allocs: {3} - {4} B) (frees: {6} - {7} B) (reallocs: {5})".format([
+			Utils.right_pad_to_size(bench_name, 25), time_per_repetition*0.001, measured_time*0.001,
+			allocations_count, allocated_bytes, reallocations_count, free_count, freed_bytes
 		]))
 		
 	print("\n\nBENCHMARKS FINISHED")

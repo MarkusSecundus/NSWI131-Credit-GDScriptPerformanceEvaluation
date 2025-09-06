@@ -1,5 +1,6 @@
 class_name IBenchmark
 
+
 func prepare(repetitions: int)->void:
 	pass
 
