@@ -141,6 +141,20 @@ class AddLiteralSingleline:
 		
 		return Time.get_ticks_usec() - start_time
 
+class DoNothingSingleline:
+	extends IBenchmark
+
+	func run_benchmark(repetitions: int, _param: Variant)->int:
+		var start_time := Time.get_ticks_usec()
+		
+		for repetition in repetitions:
+			
+			var ret :int = 0
+			;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			
+		
+		return Time.get_ticks_usec() - start_time
+
 class MultiplyLiteral:
 	extends IBenchmark
 	

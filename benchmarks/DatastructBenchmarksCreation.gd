@@ -1235,15 +1235,40 @@ class StringConcat:
 	extends IBenchmark
 	
 	func get_params()->Array:
-		return [1, 5, 10, 20, 40, 80, 160, 200, 400, 800]
+		return [
+			["200-a", 200, "a"], 
+			["1-a", 1,   "a"], 
+			["2-a", 2,   "a"], 
+			["3-a", 3,   "a"], 
+			["4-a", 4,   "a"], 
+			["5-a", 5,   "a"], 
+			["10-a", 10,  "a"], 
+			["20-a", 20,  "a"], 
+			["40-a", 40,  "a"], 
+			["80-a", 80,  "a"], 
+			["160-a", 160, "a"], 
+			["320-a", 320, "a"],
+			["1-long", 1,   "abcdefghijklmnopqrstuvwxyz"], 
+			["2-long", 2,   "abcdefghijklmnopqrstuvwxyz"], 
+			["3-long", 3,   "abcdefghijklmnopqrstuvwxyz"], 
+			["4-long", 4,   "abcdefghijklmnopqrstuvwxyz"], 
+			["5-long", 5,   "abcdefghijklmnopqrstuvwxyz"], 
+			["10-long", 10,  "abcdefghijklmnopqrstuvwxyz"], 
+			["20-long", 20,  "abcdefghijklmnopqrstuvwxyz"], 
+			["40-long", 40,  "abcdefghijklmnopqrstuvwxyz"], 
+			["80-long", 80,  "abcdefghijklmnopqrstuvwxyz"], 
+			["160-long", 160, "abcdefghijklmnopqrstuvwxyz"], 
+			["320-long", 320, "abcdefghijklmnopqrstuvwxyz"],
+		]
 	
 	func run_benchmark(repetitions: int, param: Variant)->int:
-		var length : int = param
+		var length : int = param[1]
+		var to_concat :String = param[2]
 		
 		var start_time := Time.get_ticks_usec()
 		
 		for repetition in repetitions:
 			var s := ""
-			for i in length: s += "a"
+			for i in length: s += to_concat
 			
 		return Time.get_ticks_usec() - start_time
