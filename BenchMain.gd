@@ -35,15 +35,17 @@ func dump_disassemblies()->void:
 
 
 func _ready() -> void:
-	do_benchmark(DatastructBenchmarksCreation) ; return
+	#do_benchmark(DatastructBenchmarksCreation) ; return
+	var is_reverse: bool = false
 	
 	var output:= FileAccess.open("C:/Users/MarkusSecundus/Documents/PRG/bin/out.csv", FileAccess.WRITE)
 	
-	for i in 10:
+	if is_reverse: BENCHMARK_PARENTS.reverse()
+	for i in 20:
 		print("|| RUN %d...\n"%i)
 		for bench_registry in BENCHMARK_PARENTS:
-			print("%s...\n"%bench_registry.get_global_name())
-			do_benchmark(bench_registry, output)
+			print("%d) %s...\n"%[i, bench_registry.get_global_name()])
+			do_benchmark(bench_registry, output, bench_registry.get_global_name(), is_reverse)
 			print("\n\n#################################################################################################################################\n")
 			output.flush()
 			await null
@@ -55,18 +57,21 @@ func _ready() -> void:
 	get_tree().quit()
 	
 	
-func do_benchmark(bench_registry: GDScript, output:FileAccess=null) -> void:
+func do_benchmark(bench_registry: GDScript, output:FileAccess=null, bench_registry_name:String = "", is_reverse: bool = false) -> void:
 	#OS.disassemble_function(ArithmeticBenchmarks.DoNothingIndexDict.new().run_benchmark); return
 	#dump_disassemblies(); return
 	
 	var constants_map := bench_registry.get_script_constant_map()
-	for bench_name in constants_map:
+	var constant_map_keys = constants_map.keys()
+	if is_reverse: constant_map_keys.reverse()
+	for bench_name in constant_map_keys:
 		var bench_script : GDScript= constants_map[bench_name]
 		if bench_script.get_base_script() != IBenchmark:
 			print()
 			continue
 		var bench := bench_script.new() as IBenchmark
 		var params := bench.get_params()
+		if is_reverse: params.reverse()
 		for param in params:
 			bench.prepare(WARMUP_REPETITIONS_COUNT)
 			bench.run_benchmark(WARMUP_REPETITIONS_COUNT, param)
@@ -100,7 +105,7 @@ func do_benchmark(bench_registry: GDScript, output:FileAccess=null) -> void:
 					Utils.right_pad_to_size(qualified_bench_name, 40), Utils.right_pad_to_size(timing_info, 50), mem_info
 				]))
 			if output != null:
-				output.store_line("%s;%s;%d;%d;%d;%s;%d;%d;%d;"%([bench_name, param_repr, measured_time, REPETITIONS_COUNT, allocations_count, allocated_bytes, free_count, freed_bytes, reallocations_count]))
+				output.store_line("%s;%s;%s;%d;%d;%d;%s;%d;%d;%d;"%([bench_registry_name, bench_name, param_repr, measured_time, REPETITIONS_COUNT, allocations_count, allocated_bytes, free_count, freed_bytes, reallocations_count]))
 				
 	print("\n\nBENCHMARKS FINISHED")
 	
