@@ -6,13 +6,14 @@ class_name BenchMain
 var BENCHMARK_PARENT : GDScript = FunctioncallBenchmarks
 
 var BENCHMARK_PARENTS : Array[GDScript] = [
-	ArithmeticBenchmarks,
-	IterationBenchmarks,
-	FunctioncallBenchmarks,
-	DatastructBenchmarksLoad,
-	DatastructBenchmarksStore,
-	DatastructBenchmarksCreation,
-	ConversionBenchmarks,
+	DatastructBenchmarksLoadFixed
+	#ArithmeticBenchmarks,
+	#IterationBenchmarks,
+	#FunctioncallBenchmarks,
+	#DatastructBenchmarksLoad,
+	#DatastructBenchmarksStore,
+	#DatastructBenchmarksCreation,
+	#ConversionBenchmarks,
 ]
 
 
@@ -35,13 +36,13 @@ func dump_disassemblies()->void:
 
 
 func _ready() -> void:
-	#do_benchmark(DatastructBenchmarksCreation) ; return
+	#do_benchmark(DatastructBenchmarksLoadFixed) ; return
 	var is_reverse: bool = false
 	
 	var output:= FileAccess.open("C:/Users/MarkusSecundus/Documents/PRG/bin/out.csv", FileAccess.WRITE)
 	
 	if is_reverse: BENCHMARK_PARENTS.reverse()
-	for i in 20:
+	for i in 140:
 		print("|| RUN %d...\n"%i)
 		for bench_registry in BENCHMARK_PARENTS:
 			print("%d) %s...\n"%[i, bench_registry.get_global_name()])
