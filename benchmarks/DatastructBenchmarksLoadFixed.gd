@@ -1199,7 +1199,7 @@ class ObjectDynNamedLoadIndexer:
 
 
 
-class ObjectNamedLoadGet:
+class ObjectTypedNamedLoadGet:
 	extends IBenchmark
 	
 	var dict := _TestDatastruct.new()
