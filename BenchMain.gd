@@ -6,14 +6,13 @@ class_name BenchMain
 var BENCHMARK_PARENT : GDScript = FunctioncallBenchmarks
 
 var BENCHMARK_PARENTS : Array[GDScript] = [
-	DatastructBenchmarksLoadFixed
-	#ArithmeticBenchmarks,
-	#IterationBenchmarks,
-	#FunctioncallBenchmarks,
-	#DatastructBenchmarksLoad,
-	#DatastructBenchmarksStore,
-	#DatastructBenchmarksCreation,
-	#ConversionBenchmarks,
+	ArithmeticBenchmarks,
+	IterationBenchmarks,
+	FunctioncallBenchmarks,
+	DatastructBenchmarksLoad,
+	DatastructBenchmarksStore,
+	DatastructBenchmarksCreation,
+	ConversionBenchmarks,
 ]
 
 
